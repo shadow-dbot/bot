@@ -18,7 +18,7 @@ module.exports = class userInfo extends Command {
 	async run(msg) {
 		try {
 			let embed = new Discord.RichEmbed()
-				// .setTitle("Server information")
+				.setTitle("USer info")
 				.setColor("ff0000")
 				.setThumbnail(serverIcon)
 				.addField(
