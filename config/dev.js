@@ -5,4 +5,5 @@ module.exports = {
 	bot_invite_link:
 		"https://discordapp.com/oauth2/authorize?client_id=595277448099266591&scope=bot&permissions=8",
 	youtubeAPI: "AIzaSyAvJrakLAyr8tH0QtBQJWjQ8fwu9SoZ8MA",
+	tenorAPI: "KQWG0Q5XDY5K",
 };
