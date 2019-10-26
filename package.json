@@ -1,26 +1,30 @@
 {
-  "name": "discordbot",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/QGIsK/discordbot.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/QGIsK/discordbot/issues"
-  },
-  "homepage": "https://github.com/QGIsK/discordbot#readme",
-  "dependencies": {
-    "discord.js": "11.5.1",
-    "discord.js-commando": "0.10.0",
-    "moment": "2.24.0"
-  }
+	"name": "discordbot",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js",
+		"dev": "nodemon app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/QGIsK/discordbot.git"
+	},
+	"keywords": [],
+	"author": "Demian",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/QGIsK/discordbot/issues"
+	},
+	"homepage": "https://github.com/QGIsK/discordbot#readme",
+	"dependencies": {
+		"discord.js": "github:discordjs/discord.js#master",
+		"discord.js-commando": "github:discordjs/Commando",
+		"moment": "2.24.0",
+		"ffmpeg-static": "^2.5.0",
+		"node-opus": "0.3.3",
+		"simple-youtube-api": "^5.2.1",
+		"ytdl-core": "^0.29.5"
+	}
 }
