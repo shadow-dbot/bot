@@ -7,8 +7,8 @@ module.exports = class GlobalNewsCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "global-news",
-			aliases: ["world-news", "reuters"],
-      group: "misc",
+			aliases: ["world-news"],
+			group: "misc",
 			memberName: "global-news",
 			description: "Replies with the 5 latest global news headlines",
 			throttling: {
