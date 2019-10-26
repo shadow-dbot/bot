@@ -6,4 +6,5 @@ module.exports = {
 		"https://discordapp.com/oauth2/authorize?client_id=595277448099266591&scope=bot&permissions=8",
 	youtubeAPI: "AIzaSyAvJrakLAyr8tH0QtBQJWjQ8fwu9SoZ8MA",
 	tenorAPI: "KQWG0Q5XDY5K",
+	newsAPI: "6e5afdea909e4d048ebffaf77080bd42",
 };
