@@ -43,7 +43,9 @@ client.on("ready", () => console.log("Ready"));
 
 client.on("message", async msg => {
 	let guilds = await Guilds.findOne({ guildID: msg.guild.id });
-	let settings = await Settings.findOne({ guildID: msg.guild.id });
+	let settings = await Settings.findOne({ guiildID: msg.guild.id });
+
+	if (!guilds && !settings) await createGuild(msg.guild);
 
 	if (settings.profanity.filter) {
 		if (settings.profanity.words.some(word => msg.content.includes(word))) {
@@ -56,6 +58,8 @@ client.on("message", async msg => {
 client.on("guildMemberAdd", async member => {
 	let guilds = await Guilds.findOne({ guildID: member.guild.id });
 	let settings = await Settings.findOne({ guildID: member.guild.id });
+
+	if (!guilds && !settings) await createGuild(member.guild);
 
 	if (settings.welcome.msg) {
 		let channelName = "welcome-log";
@@ -73,7 +77,14 @@ client.on("guildCreate", async guild => {
 	let guilds = await Guilds.findOne({ guildID: guild.id });
 	let settings = await Settings.findOne({ guiildID: guild.id });
 
-	if (!guilds) console.log(guilds);
+	if (!guilds && !settings) await createGuild(guild);
+});
+
+async function createGuild(guild) {
+	let guilds = await Guilds.findOne({ guildID: guild.id });
+	let settings = await Settings.findOne({ guiildID: guild.id });
+
+	if (guilds && settings) return;
 
 	if (!settings) {
 		settings = new Settings({ guildID: guild.id });
@@ -88,8 +99,9 @@ client.on("guildCreate", async guild => {
 		icon: guild.icon,
 		settings: settings._id,
 	});
+
 	await newServer.save();
-});
+}
 
 client.on("commandRun", async cmd => {
 	const newCommand = new Command({
