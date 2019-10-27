@@ -39,9 +39,38 @@ mongoose
 
 client.on("ready", () => console.log("Ready"));
 
+client.on("message", async msg => {
+	let guilds = await Guilds.findOne({ guildID: msg.guild.id });
+	let settings = await Settings.findOne({ guildID: msg.guild.id });
+
+	if (settings.profanity.filter) {
+		if (settings.profanity.words.some(word => msg.content.includes(word))) {
+			msg.delete();
+			msg.reply("You're not allowed to say that word here...");
+		}
+	}
+});
+
+client.on("guildMemberAdd", async member => {
+	let guilds = await Guilds.findOne({ guildID: member.guild.id });
+	let settings = await Settings.findOne({ guildID: member.guild.id });
+
+	if (settings.welcome.msg) {
+		let channelName = "welcome-log";
+
+		if (settings.welcome.channel) channelName = settings.welcome.channel;
+
+		let welcomeChannel = member.guild.channels.find(ch => ch.name == channelName);
+		welcomeChannel.send(
+			`Welcome ${member}! to ${member.guild.name}\n You're the ${member.guild.memberCount} `
+		);
+	}
+});
+
 client.on("guildCreate", async guild => {
 	let guilds = await Guilds.findOne({ guildID: guild.id });
 	let settings = await Settings.findOne({ guiildID: guild.id });
+
 	if (!guilds) console.log(guilds);
 
 	if (!settings) {
