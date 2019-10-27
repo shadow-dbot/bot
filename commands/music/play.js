@@ -2,8 +2,7 @@ const { Command } = require("discord.js-commando");
 const { MessageEmbed } = require("discord.js");
 const Youtube = require("simple-youtube-api");
 const ytdl = require("ytdl-core");
-// const { youtubeAPI } = require("../../config/key.json");
-const apikey = "AIzaSyAvJrakLAyr8tH0QtBQJWjQ8fwu9SoZ8MA";
+const { youtubeAPI } = require("../../config/key.json");
 const youtube = new Youtube(apikey);
 
 module.exports = class PlayCommand extends Command {
@@ -158,12 +157,12 @@ module.exports = class PlayCommand extends Command {
 					}
 				);
 				let videoIndex = parseInt(response.first().content);
+				if (response.first().content === "exit") return songEmbed.delete();
 			} catch (err) {
 				console.error(err);
 				songEmbed.delete();
 				return message.say("Please try again and enter a number between 1 and 5 or exit");
 			}
-			if (response.first().content === "exit") return songEmbed.delete();
 			try {
 				let video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 				// // can be uncommented if you don't want the bot to play live streams
