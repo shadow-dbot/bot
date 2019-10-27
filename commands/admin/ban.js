@@ -1,6 +1,6 @@
 const { Command } = require("discord.js-commando");
 
-module.exports = class BanCommand extends Command {
+module.exports = class banCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "ban",
@@ -12,7 +12,7 @@ module.exports = class BanCommand extends Command {
 			userPermissions: ["MANAGE_MESSAGES", "KICK_MEMBERS", "BAN_MEMBERS"],
 			args: [
 				{
-					key: "userToBan",
+					key: "user",
 					prompt: "Who do you want to ban?",
 					type: "string",
 				},
