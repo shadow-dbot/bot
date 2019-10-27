@@ -4,7 +4,7 @@ const Youtube = require("simple-youtube-api");
 const ytdl = require("ytdl-core");
 const { youtubeAPI } = require("../../config/key.json");
 console.log(youtubeAPI);
-const youtube = new Youtube(youtubeAPI);
+const youtube = new Youtube("AIzaSyAvJrakLAyr8tH0QtBQJWjQ8fwu9SoZ8MA");
 
 module.exports = class PlayCommand extends Command {
 	constructor(client) {
