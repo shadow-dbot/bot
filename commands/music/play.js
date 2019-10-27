@@ -146,7 +146,7 @@ module.exports = class PlayCommand extends Command {
 			}
 			if (response.first().content === "exit") return songEmbed.delete();
 			try {
-				let video = await youtube.getVideoByID(videos[videoIndex - 1].id);
+				var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 			} catch (err) {
 				console.error(err);
 				songEmbed.delete();
