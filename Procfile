@@ -1,2 +1,1 @@
-worker: npm run cs-bot
-web: npm run web
+worker: npm run start
