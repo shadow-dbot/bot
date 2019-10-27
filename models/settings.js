@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const badwords = require("../badwords.js");
+
 const settingsModel = new mongoose.Schema({
 	guildID: {
 		type: String,
@@ -22,7 +24,7 @@ const settingsModel = new mongoose.Schema({
 		},
 		words: {
 			type: Array,
-			default: ["fuck"],
+			default: badwords,
 		},
 	},
 });
