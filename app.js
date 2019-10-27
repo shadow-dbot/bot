@@ -32,7 +32,7 @@ const client = new Commando.Client({
 const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/discord-bot";
 
 mongoose
-	.connect("mongodb://localhost:27017/discord-bot", {
+	.connect(mongoURI, {
 		useUnifiedTopology: true,
 		useNewUrlParser: true,
 	})
