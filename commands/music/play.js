@@ -34,8 +34,7 @@ module.exports = class PlayCommand extends Command {
 		// initial checking
 		var voiceChannel = message.member.voice.channel;
 		if (!voiceChannel) return message.say("Join a channel and try again");
-		// end initial check
-		// This if statement checks if the user entered a youtube playlist url
+
 		if (query.match(/^(?!.*\?.*\bv=)https:\/\/www\.youtube\.com\/.*\?.*\blist=.*$/)) {
 			try {
 				const playlist = await youtube.getPlaylist(query);
@@ -56,15 +55,7 @@ module.exports = class PlayCommand extends Command {
 						thumbnail,
 						voiceChannel,
 					};
-					// this can be uncommented if you choose to limit the queue
-					// if (message.guild.musicData.queue.length < 10) {
-					//
 					message.guild.musicData.queue.push(song);
-					// } else {
-					//   return message.say(
-					//     `I can't play the full playlist because there will be more than 10 songs in queue`
-					//   );
-					// }
 				}
 				if (message.guild.musicData.isPlaying == false) {
 					message.guild.musicData.isPlaying = true;
@@ -87,14 +78,7 @@ module.exports = class PlayCommand extends Command {
 				query = query.replace(/(>|<)/gi, "").split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
 				const id = query[2].split(/[^0-9a-z_\-]/i)[0];
 				const video = await youtube.getVideoByID(id);
-				// // can be uncommented if you don't want the bot to play live streams
-				// if (video.raw.snippet.liveBroadcastContent === 'live') {
-				//   return message.say("I don't support live streams!");
-				// }
-				// // can be uncommented if you don't want the bot to play videos longer than 1 hour
-				// if (video.duration.hours !== 0) {
-				//   return message.say('I cannot play videos longer than 1 hour');
-				// }
+
 				const title = video.title;
 				let duration = this.formatDuration(video.duration);
 				const thumbnail = video.thumbnails.high.url;
@@ -106,12 +90,7 @@ module.exports = class PlayCommand extends Command {
 					thumbnail,
 					voiceChannel,
 				};
-				// // can be uncommented if you want to limit the queue
-				// if (message.guild.musicData.queue.length > 10) {
-				//   return message.say(
-				//     'There are too many songs in the queue already, skip or wait a bit'
-				//   );
-				// }
+
 				message.guild.musicData.queue.push(song);
 				if (
 					message.guild.musicData.isPlaying == false ||
@@ -167,18 +146,7 @@ module.exports = class PlayCommand extends Command {
 			}
 			if (response.first().content === "exit") return songEmbed.delete();
 			try {
-				var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
-				// // can be uncommented if you don't want the bot to play live streams
-				// if (video.raw.snippet.liveBroadcastContent === 'live') {
-				//   songEmbed.delete();
-				//   return message.say("I don't support live streams!");
-				// }
-
-				// // can be uncommented if you don't want the bot to play videos longer than 1 hour
-				// if (video.duration.hours !== 0) {
-				//   songEmbed.delete();
-				//   return message.say('I cannot play videos longer than 1 hour');
-				// }
+				let video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 			} catch (err) {
 				console.error(err);
 				songEmbed.delete();
@@ -198,13 +166,7 @@ module.exports = class PlayCommand extends Command {
 				thumbnail,
 				voiceChannel,
 			};
-			// // can be uncommented if you don't want to limit the queue
-			// if (message.guild.musicData.queue.length > 10) {
-			//   songEmbed.delete();
-			//   return message.say(
-			//     'There are too many songs in the queue already, skip or wait a bit'
-			//   );
-			// }
+
 			message.guild.musicData.queue.push(song);
 			if (message.guild.musicData.isPlaying == false) {
 				message.guild.musicData.isPlaying = true;
