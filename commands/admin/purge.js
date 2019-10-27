@@ -32,7 +32,6 @@ module.exports = class extends Command {
 
 		amount = parseInt(amount);
 		try {
-			console.log(e);
 			msg.channel.bulkDelete(amount).then(_ => {
 				msg.channel
 					.send(`Deleted ${amount} messages.`)
@@ -40,6 +39,7 @@ module.exports = class extends Command {
 					.catch(e => console.error(e));
 			});
 		} catch (e) {
+			console.log(e);
 			return msg.reply("An Error occured, Please try again later.");
 		}
 	}
