@@ -20,7 +20,7 @@ Structures.extend("Guild", Guild => {
 });
 
 const client = new Commando.Client({
-	commandPrefix: "$",
+	commandPrefix: Config.prefix,
 	owner: Config.owner,
 });
 
