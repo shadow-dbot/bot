@@ -42,10 +42,10 @@ mongoose
 client.on("ready", () => console.log("Ready"));
 
 client.on("message", async msg => {
-	let guilds = await Guilds.findOne({ guildID: msg.guild.id });
-	let settings = await Settings.findOne({ guiildID: msg.guild.id });
+	await checkGuild(msg.guild);
 
-	if (!guilds && !settings) await createGuild(msg.guild);
+	let guilds = await Guilds.findOne({ guildID: msg.guild.id });
+	let settings = await Settings.findOne({ guildID: msg.guild.id });
 
 	if (settings.profanity.filter) {
 		if (settings.profanity.words.some(word => msg.content.includes(word))) {
@@ -56,10 +56,10 @@ client.on("message", async msg => {
 });
 
 client.on("guildMemberAdd", async member => {
+	await checkGuild(msg.guild);
+
 	let guilds = await Guilds.findOne({ guildID: member.guild.id });
 	let settings = await Settings.findOne({ guildID: member.guild.id });
-
-	if (!guilds && !settings) await createGuild(member.guild);
 
 	if (settings.welcome.msg) {
 		let channelName = "welcome-log";
@@ -75,12 +75,12 @@ client.on("guildMemberAdd", async member => {
 
 client.on("guildCreate", async guild => {
 	let guilds = await Guilds.findOne({ guildID: guild.id });
-	let settings = await Settings.findOne({ guiildID: guild.id });
+	let settings = await Settings.findOne({ guildID: guild.id });
 
-	if (!guilds && !settings) await createGuild(guild);
+	if (!guilds && !settings) await checkGuild(guild);
 });
 
-async function createGuild(guild) {
+async function checkGuild(guild) {
 	let guilds = await Guilds.findOne({ guildID: guild.id });
 	let settings = await Settings.findOne({ guiildID: guild.id });
 
