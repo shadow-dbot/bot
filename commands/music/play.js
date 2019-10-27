@@ -31,11 +31,8 @@ module.exports = class PlayCommand extends Command {
 	}
 
 	async run(message, { query }) {
-		// initial checking
-		var voiceChannel = message.member.voice.channel;
+		let voiceChannel = message.member.voice.channel;
 		if (!voiceChannel) return message.say("Join a channel and try again");
-		// end initial check
-		// This if statement checks if the user entered a youtube playlist url
 		if (query.match(/^(?!.*\?.*\bv=)https:\/\/www\.youtube\.com\/.*\?.*\blist=.*$/)) {
 			try {
 				const playlist = await youtube.getPlaylist(query);
@@ -148,9 +145,9 @@ module.exports = class PlayCommand extends Command {
 				.addField("Song 4", vidNameArr[3])
 				.addField("Song 5", vidNameArr[4])
 				.addField("Exit", "exit");
-			var songEmbed = await message.say({ embed });
+			let songEmbed = await message.say({ embed });
 			try {
-				var response = await message.channel.awaitMessages(
+				let response = await message.channel.awaitMessages(
 					msg => (msg.content > 0 && msg.content < 6) || msg.content === "exit",
 					{
 						max: 1,
@@ -159,7 +156,7 @@ module.exports = class PlayCommand extends Command {
 						errors: ["time"],
 					}
 				);
-				var videoIndex = parseInt(response.first().content);
+				let videoIndex = parseInt(response.first().content);
 			} catch (err) {
 				console.error(err);
 				songEmbed.delete();
@@ -167,7 +164,7 @@ module.exports = class PlayCommand extends Command {
 			}
 			if (response.first().content === "exit") return songEmbed.delete();
 			try {
-				var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
+				let video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 				// // can be uncommented if you don't want the bot to play live streams
 				// if (video.raw.snippet.liveBroadcastContent === 'live') {
 				//   songEmbed.delete();
