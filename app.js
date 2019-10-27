@@ -37,7 +37,7 @@ mongoose
 		useNewUrlParser: true,
 	})
 	.then(_ => console.log("connected"))
-	.catch(e => console.error("error connecting mongodb"));
+	.catch(e => console.error(e));
 
 client.on("ready", () => console.log("Ready"));
 
