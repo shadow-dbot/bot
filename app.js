@@ -42,10 +42,13 @@ mongoose
 client.on("ready", () => console.log("Ready"));
 
 client.on("message", async msg => {
-	await checkGuild(msg.guild);
+	if (msg.author.bot) return;
+	const guild = msg.guild;
 
-	let guilds = await Guilds.findOne({ guildID: msg.guild.id });
-	let settings = await Settings.findOne({ guildID: msg.guild.id });
+	await checkGuild(guild);
+
+	let foundGuild = await Guilds.findOne({ guildID: guild.id });
+	let settings = await Settings.findOne({ guildID: guild.id });
 
 	if (settings.profanity.filter) {
 		if (settings.profanity.words.some(word => msg.content.includes(word))) {
@@ -56,16 +59,15 @@ client.on("message", async msg => {
 });
 
 client.on("guildMemberAdd", async member => {
-	await checkGuild(msg.guild);
+	const guild = member.guild;
+	await checkGuild(guild);
 
-	let guilds = await Guilds.findOne({ guildID: member.guild.id });
-	let settings = await Settings.findOne({ guildID: member.guild.id });
+	let foundGuild = await Guilds.findOne({ guildID: guild.id });
+	let settings = await Settings.findOne({ guildID: guild.id });
 
 	if (settings.welcome.msg) {
 		let channelName = "welcome-log";
-
 		if (settings.welcome.channel) channelName = settings.welcome.channel;
-
 		let welcomeChannel = member.guild.channels.find(ch => ch.name == channelName);
 		welcomeChannel.send(
 			`Welcome ${member}! to ${member.guild.name}\n You're the ${member.guild.memberCount} `
@@ -73,23 +75,16 @@ client.on("guildMemberAdd", async member => {
 	}
 });
 
-client.on("guildCreate", async guild => {
-	let guilds = await Guilds.findOne({ guildID: guild.id });
-	let settings = await Settings.findOne({ guildID: guild.id });
-
-	if (!guilds && !settings) await checkGuild(guild);
-});
+client.on("guildCreate", async guild => {});
 
 async function checkGuild(guild) {
-	let guilds = await Guilds.findOne({ guildID: guild.id });
-	let settings = await Settings.findOne({ guiildID: guild.id });
+	let foundGuild = await Guilds.findOne({ guildID: guild.id });
+	let settings = await Settings.findOne({ guildID: guild.id });
 
-	if (guilds && settings) return;
+	if (foundGuild && settings) return;
 
-	if (!settings) {
-		settings = new Settings({ guildID: guild.id });
-		settings.save();
-	}
+	settings = new Settings({ guildID: guild.id });
+	settings.save();
 
 	const newServer = new Guilds({
 		guildID: guild.id,
