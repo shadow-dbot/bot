@@ -2,7 +2,7 @@ const { Structures } = require("discord.js");
 const Commando = require("discord.js-commando");
 const path = require("path");
 
-const Config = require("./config/key");
+const Config = require("./config/key.json");
 
 Structures.extend("Guild", Guild => {
 	class MusicGuild extends Guild {
