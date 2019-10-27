@@ -8,5 +8,5 @@ module.exports = {
 	bot_invite_link: process.env.BOT_INVITE_LINK,
 	youtubeAPI: process.env.YOUTUBE_API,
 	tenorAPI: process.env.TENOR_API,
-	newsAPI: process.env.news_API,
+	newsAPI: process.env.NEWS_API,
 };
