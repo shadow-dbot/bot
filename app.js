@@ -53,7 +53,7 @@ client.on("message", async msg => {
 	if (settings.profanity.filter) {
 		if (settings.profanity.words.some(word => msg.content.includes(word))) {
 			msg.delete();
-			msg.reply("You're not allowed to say that word here...");
+			// msg.reply("You're not allowed to say that word here...")
 		}
 	}
 });
