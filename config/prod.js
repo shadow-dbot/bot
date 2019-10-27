@@ -7,4 +7,5 @@ module.exports = {
 	youtubeAPI: process.env.YOUTUBE_API,
 	tenorAPI: process.env.TENOR_API,
 	newsAPI: process.env.NEWS_API,
+	mongoURI: process.env.MONGO_URI,
 };
