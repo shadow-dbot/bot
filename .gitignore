@@ -1,5 +1,4 @@
-config\dev.js
-
+config/dev.js
 # Logs
 logs
 *.log
