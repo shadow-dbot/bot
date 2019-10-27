@@ -29,6 +29,8 @@ const client = new Commando.Client({
 	owner: Config.owner,
 });
 
+const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/discord-bot";
+
 mongoose
 	.connect("mongodb://localhost:27017/discord-bot", {
 		useUnifiedTopology: true,
