@@ -12,7 +12,7 @@ module.exports = class KickCommand extends Command {
 			userPermissions: ["MANAGE_MESSAGES", "KICK_MEMBERS", "BAN_MEMBERS"],
 			args: [
 				{
-					key: "userToKick",
+					key: "user",
 					prompt: "Who do you want to kick?",
 					type: "string",
 				},
