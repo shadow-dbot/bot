@@ -9,4 +9,5 @@ module.exports = {
 	tenorAPI: "KQWG0Q5XDY5K",
 	newsAPI: "6e5afdea909e4d048ebffaf77080bd42",
 	support_link: "https://discord.gg/cyRDWR8",
+	mongo_uri: "mongodb://localhost:27017/discord-bot",
 };

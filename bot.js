@@ -29,7 +29,7 @@ const client = new Commando.Client({
 	owner: Config.owner,
 });
 
-const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/discord-bot";
+const mongoURI = Config.mongo_uri;
 
 mongoose
 	.connect(mongoURI, {
