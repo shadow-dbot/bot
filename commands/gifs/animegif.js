@@ -14,11 +14,19 @@ module.exports = class AnimegifCommand extends Command {
 				usages: 1,
 				duration: 4,
 			},
+			args: [
+				{
+					key: "text",
+					prompt: "What gif would you like to watch?",
+					type: "string",
+					validate: text => text.length < 50,
+				},
+			],
 		});
 	}
 
-	run(message) {
-		fetch(`https://api.tenor.com/v1/random?key=${tenorAPI}&q=anime&limit=1`)
+	run(message, { text }) {
+		fetch(`https://api.tenor.com/v1/random?key=${tenorAPI}&q=anime%20${text}&limit=1`)
 			.then(res => res.json())
 			.then(json => message.say(json.results[0].url))
 			.catch(e => {
