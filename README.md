@@ -12,6 +12,12 @@ git clone https://github.com/QGIsK/discordbot/
 npm i
 ```
 
+## Prerequisites
+Youtube API
+Tenor API
+news API
+Discordbot API
+
 ## Usage
 
 ```node
