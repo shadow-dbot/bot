@@ -1,6 +1,6 @@
 const { Command } = require("discord.js-commando");
 
-module.exports = class VolumeCommand extends Command {
+module.exports = class volumeCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "volume",
@@ -16,9 +16,9 @@ module.exports = class VolumeCommand extends Command {
 			args: [
 				{
 					key: "wantedVolume",
-					prompt: "What volume would you like to set? from 1 to 200",
+					prompt: "What volume would you like to set? from 1 to 100",
 					type: "integer",
-					validate: wantedVolume => wantedVolume >= 1 && wantedVolume <= 200,
+					validate: wantedVolume => wantedVolume >= 1 && wantedVolume <= 100,
 				},
 			],
 		});
@@ -34,7 +34,7 @@ module.exports = class VolumeCommand extends Command {
 		) {
 			return message.reply("There is no song playing right now!");
 		}
-		const volume = wantedVolume / 100;
+		const volume = wantedVolume;
 		message.guild.musicData.songDispatcher.setVolume(volume);
 	}
 };
