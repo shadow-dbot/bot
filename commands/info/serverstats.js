@@ -7,11 +7,10 @@ module.exports = class serverStats extends Command {
 		super(client, {
 			name: "serverstats",
 			group: "info",
+			aliases: ["server"],
 			memberName: "serverstats",
 			guildOnly: true,
 			description: "Returns server stats",
-			examples: ["serverstats"],
-			// userPermissions: [''],
 		});
 	}
 
