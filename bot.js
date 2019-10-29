@@ -34,7 +34,6 @@ const mongoURI = Config.mongo_uri;
 
 mongoose
 	.connect(mongoURI, {
-		useUnifiedTopology: true,
 		useNewUrlParser: true,
 	})
 	.then(_ => console.log("connected"))
@@ -133,6 +132,7 @@ client.registry
 		["info", "Info commands"],
 		["misc", "Misc commands"],
 		["music", "Music commands"],
+		["owner", "Commands for the owner of the bot."],
 	])
 
 	.registerDefaults()
