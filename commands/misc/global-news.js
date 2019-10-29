@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 const { newsAPI } = require("../../config/key.js");
 const { Command } = require("discord.js-commando");
 
-module.exports = class GlobalNewsCommand extends Command {
+module.exports = class globalNewsCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "global-news",
