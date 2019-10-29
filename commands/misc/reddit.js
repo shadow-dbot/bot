@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
 const { Command } = require("discord.js-commando");
 
-module.exports = class RedditCommand extends Command {
+module.exports = class redditCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "reddit",
@@ -80,24 +80,19 @@ module.exports = class RedditCommand extends Command {
 			.then(json => {
 				const dataArr = json.data.children;
 				for (let i = 0; i < dataArr.length; i++) {
-					// if (dataArr[i].data.over_18 === true) {
-					//   message.say(':no_entry: nsfw :no_entry:');
-					// } else {
 					message.say(embedPost(dataArr[i].data));
-					//}
 				}
 			})
 			.catch(e => {
 				message.say("The subreddit you asked for was not found");
 				return console.error(e);
 			});
-		// returns an embed that is ready to be sent
 		function embedPost(data) {
 			if (data.title.length > 255) {
-				data.title = data.title.substring(0, 252) + "..."; // discord.js does not allow embed title lengths greater than 256
+				data.title = data.title.substring(0, 252) + "...";
 			}
 			return new MessageEmbed()
-				.setColor(data.over_18 ? "#cf000f" : "#FE9004") // if post is nsfw, color is red
+				.setColor(data.over_18 ? "#cf000f" : "#FE9004")
 				.setTitle(data.title)
 				.setThumbnail(
 					data.thumbnail === "self"
