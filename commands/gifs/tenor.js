@@ -2,14 +2,14 @@ const fetch = require("node-fetch");
 const { tenorAPI } = require("../../config/key.js");
 const { Command } = require("discord.js-commando");
 
-module.exports = class GifCommand extends Command {
+module.exports = class tenorCommand extends Command {
 	constructor(client) {
 		super(client, {
-			name: "gif",
+			name: "tenor",
 			group: "gifs",
-			aliases: ["search-gif", "search-gifs"],
-			memberName: "gif",
-			description: "Provide a query and I will return a gif!",
+			aliases: ["gif", "search-gif"],
+			memberName: "tenor",
+			description: "Provide a query and I'll look for it on tenor!",
 			throttling: {
 				usages: 1,
 				duration: 4,
@@ -17,7 +17,7 @@ module.exports = class GifCommand extends Command {
 			args: [
 				{
 					key: "text",
-					prompt: "What gif would you like to watch?",
+					prompt: "What gif would you like to see",
 					type: "string",
 					validate: text => text.length < 50,
 				},
@@ -30,7 +30,7 @@ module.exports = class GifCommand extends Command {
 			.then(res => res.json())
 			.then(json => message.say(json.results[0].url))
 			.catch(e => {
-				message.say("Failed to find a gif that matched your query");
+				message.say("Failed to find a gif on tenor that matched your query");
 				return console.error(e);
 			});
 	}
