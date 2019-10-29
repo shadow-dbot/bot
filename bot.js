@@ -4,6 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 
 const Command = require("./models/command");
+const Error = require("./models/error");
 const Guilds = require("./models/server");
 const Settings = require("./models/settings");
 
@@ -75,7 +76,25 @@ client.on("guildMemberAdd", async member => {
 	}
 });
 
-client.on("guildCreate", async guild => {});
+client.on("commandError", (cmd, error, cmdMessage, query) => {
+	try {
+		const newError = new Error({
+			guildID: cmdMessage.channel.guild.id,
+			userID: cmdMessage.author.id,
+			cmdGroup: cmd.group.id,
+			cmdName: cmd.memberName,
+			errorMsg: error,
+			queryMsg: query.query,
+		});
+
+		newError.save();
+		client.users.get(Config.owner, false).send("An error occured.");
+		console.log("Submitted error");
+	} catch (e) {
+		console.error(e);
+		console.log("Error submitting to db");
+	}
+});
 
 async function checkGuild(guild) {
 	let foundGuild = await Guilds.findOne({ guildID: guild.id });
