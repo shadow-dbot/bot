@@ -1,6 +1,6 @@
 const { Command } = require("discord.js-commando");
 
-module.exports = class PauseCommand extends Command {
+module.exports = class pauseCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "pause",
