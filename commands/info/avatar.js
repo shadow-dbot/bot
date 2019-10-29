@@ -1,11 +1,12 @@
 const { Command } = require("discord.js-commando");
 const Discord = require("discord.js");
 
-module.exports = class extends Command {
+module.exports = class avatar extends Command {
 	constructor(client) {
 		super(client, {
 			name: "avatar",
 			group: "info",
+			aliases: ["icon"],
 			memberName: "avatar",
 			guildOnly: true,
 			description: "Returns user avatar url",
