@@ -1,6 +1,6 @@
 const { Command } = require("discord.js-commando");
 
-module.exports = class RandomNumberCommand extends Command {
+module.exports = class randomNumberCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "random",
