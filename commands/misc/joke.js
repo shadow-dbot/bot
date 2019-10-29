@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const { Command } = require("discord.js-commando");
 
-module.exports = class JokeCommand extends Command {
+module.exports = class jokeCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "joke",
