@@ -1,11 +1,11 @@
 const { Command } = require("discord.js-commando");
 const { MessageEmbed } = require("discord.js");
+const { youtubeAPI } = require("../../config/key.js");
 const Youtube = require("simple-youtube-api");
 const ytdl = require("ytdl-core");
-const { youtubeAPI } = require("../../config/key.js");
 const youtube = new Youtube(youtubeAPI);
 
-module.exports = class PlayCommand extends Command {
+module.exports = class playCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "play",
@@ -31,14 +31,13 @@ module.exports = class PlayCommand extends Command {
 	}
 
 	async run(message, { query }) {
-		// initial checking
 		var voiceChannel = message.member.voice.channel;
 		if (!voiceChannel) return message.say("Join a channel and try again");
 
 		if (query.match(/^(?!.*\?.*\bv=)https:\/\/www\.youtube\.com\/.*\?.*\blist=.*$/)) {
 			try {
 				const playlist = await youtube.getPlaylist(query);
-				const videosObj = await playlist.getVideos(10); // remove the 10 if you removed the queue limit conditions below
+				const videosObj = await playlist.getVideos(25); // remove the 10 if you removed the queue limit conditions below
 				//const videos = Object.entries(videosObj);
 				for (let i = 0; i < videosObj.length; i++) {
 					const video = await videosObj[i].fetch();
