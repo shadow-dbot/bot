@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 const { tenorAPI } = require("../../config/key");
 const { Command } = require("discord.js-commando");
 
-module.exports = class CatCommand extends Command {
+module.exports = class dogCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "dog",
