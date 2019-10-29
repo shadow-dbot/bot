@@ -1,6 +1,6 @@
 const { Command } = require("discord.js-commando");
 
-module.exports = class ShuffleQueueCommand extends Command {
+module.exports = class shuffleQueueCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "shuffle",
