@@ -1,6 +1,6 @@
 const { Command } = require("discord.js-commando");
 
-module.exports = class LeaveCommand extends Command {
+module.exports = class leaveCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "leave",
