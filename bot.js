@@ -43,6 +43,8 @@ client.on("ready", () => console.log("Ready"));
 
 client.on("message", async msg => {
 	if (msg.author.bot) return;
+	if (msg.channel.type === "dm") return;
+
 	const guild = msg.guild;
 
 	await checkGuild(guild);
