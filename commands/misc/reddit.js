@@ -6,6 +6,7 @@ module.exports = class redditCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "reddit",
+			// guildOnly: true,
 			aliases: ["subreddit", "reddit-search"],
 			group: "misc",
 			memberName: "reddit",
@@ -46,6 +47,11 @@ module.exports = class redditCommand extends Command {
 	// If you want to restrict nsfw posts, remove the commented out code below
 
 	async run(message, { subreddit, sort }) {
+		if (message.channel.type === "dm") {
+			if (!this.client.isOwner(message.author)) {
+				return message.reply("Only availably in a server");
+			}
+		}
 		if (sort === "top" || sort === "controversial") {
 			await message.say(
 				`Do you want to get the ${sort} posts from past hour/week/month/year or all?`
@@ -67,7 +73,7 @@ module.exports = class redditCommand extends Command {
 				);
 				var timeFilter = t.first().content;
 			} catch (e) {
-				console.error(e);
+
 				return message.say("Please try again and enter a proper time filter");
 			}
 		}
