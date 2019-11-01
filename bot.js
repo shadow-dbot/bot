@@ -8,6 +8,12 @@ const Error = require("./models/error");
 const Guilds = require("./models/server");
 const Settings = require("./models/settings");
 
+const messageController = require("./controllers/message/");
+const guildController = require("./controllers/guild/");
+const errorController = require("./controllers/error/");
+const channelController = require("./controllers/channel/");
+const commandController = require("./controllers/command/");
+
 const Config = require("./config/key.js");
 
 Structures.extend("Guild", Guild => {
@@ -97,6 +103,32 @@ client.on("commandError", (cmd, error, cmdMessage, query) => {
 	}
 });
 
+client.on("commandRun", async cmd => {
+	const newCommand = new Command({
+		type: cmd.name,
+		group_type: cmd.groupID,
+	});
+
+	await newCommand.save();
+});
+
+client.registry
+	.registerGroups([
+		["admin", "Admin commands"],
+		["fun", "fun commands"],
+		["gifs", "Gif commands"],
+		["info", "Info commands"],
+		["misc", "Misc commands"],
+		["music", "Music commands"],
+		["owner", "Commands for the owner of the bot."],
+	])
+
+	.registerDefaults()
+
+	.registerCommandsIn(path.join(__dirname, "commands"));
+
+client.login(Config.bot_token);
+
 async function checkGuild(guild) {
 	let foundGuild = await Guilds.findOne({ guildID: guild.id });
 	let settings = await Settings.findOne({ guildID: guild.id });
@@ -117,28 +149,3 @@ async function checkGuild(guild) {
 
 	await newServer.save();
 }
-
-client.on("commandRun", async cmd => {
-	const newCommand = new Command({
-		type: cmd.name,
-		group_type: cmd.groupID,
-	});
-	await newCommand.save();
-});
-
-client.registry
-	.registerGroups([
-		["admin", "Admin commands"],
-		["fun", "fun commands"],
-		["gifs", "Gif commands"],
-		["info", "Info commands"],
-		["misc", "Misc commands"],
-		["music", "Music commands"],
-		["owner", "Commands for the owner of the bot."],
-	])
-
-	.registerDefaults()
-
-	.registerCommandsIn(path.join(__dirname, "commands"));
-
-client.login(Config.bot_token);
