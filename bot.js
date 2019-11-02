@@ -55,9 +55,9 @@ client.on("guildUnavailable", async guild => {
 	await guildEvent.unAvailable(client, guild);
 });
 
-client.on("guildBanAdd", async (guild, user) => {
-	await guildEvent.banAdd(client, guild, user);
-});
+// client.on("guildBanAdd", async (guild, user) => {
+// 	await guildEvent.banAdd(client, guild, user);
+// });
 
 client.on("commandError", async (cmd, error, cmdMessage, query) => {
 	await commandEvent.error(client, cmdMessage.channel.guild, cmd, error, cmdMessage, query);
