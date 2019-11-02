@@ -7,11 +7,12 @@ const checkDB = require("../utils/checkDB");
 
 module.exports = {
 	create: async (client, guild) => {
-		checkDB();
+		await checkDB.guild(client, guild);
 
 		console.log(
 			`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`
 		);
+
 		guild.channels
 			.find(`name`, `general`)
 			.send(
@@ -20,12 +21,8 @@ module.exports = {
 	},
 
 	delete: async (client, guild) => {
-		try {
-			console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
-			// client.user.setActivity(`Serving ${client.guilds.size} servers`);
-		} catch (e) {
-			console.error(e);
-		}
+		console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+		// client.user.setActivity(`Serving ${client.guilds.size} servers`);
 	},
 
 	memberAdd: async (client, guild, member) => {
@@ -42,29 +39,22 @@ module.exports = {
 			);
 		}
 	},
+
 	unAvailable: async (client, guild) => {
-		try {
-			console.error(`a guild becomes unavailable, likely due to a server outage: ${guild}`);
-		} catch (e) {
-			console.error(e);
-		}
+		console.error(`a guild becomes unavailable, likely due to a server outage: ${guild}`);
 	},
 
 	banAdd: async (client, guild, user) => {
-		try {
-			await channels.guildChannel(client, guild);
+		await channels.guildChannel(client, guild);
 
-			let guildLogChannel = guild.channels.find(chan => chan.name == "guild-log");
+		let guildLogChannel = guild.channels.find(chan => chan.name == "guild-log");
 
-			const embed = new Discord.RichEmbed()
-				.setColor("#ff0000")
-				.setAuthor(`${user.tag}`, `${user.avatarURL}`)
-				.addField("Banned User", `${user.tag}`, true)
-				.setTimestamp()
-				.setFooter(`${client.user.tag}`);
-			guildLogChannel.send(embed);
-		} catch (e) {
-			console.error(e);
-		}
+		const embed = new Discord.RichEmbed()
+			.setColor("#ff0000")
+			.setAuthor(`${user.tag}`, `${user.avatarURL}`)
+			.addField("Banned User", `${user.tag}`, true)
+			.setTimestamp()
+			.setFooter(`${client.user.tag}`);
+		guildLogChannel.send(embed);
 	},
 };
