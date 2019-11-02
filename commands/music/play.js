@@ -127,23 +127,25 @@ module.exports = class playCommand extends Command {
 				.addField("Song 5", vidNameArr[4])
 				.addField("Exit", "exit");
 			var songEmbed = await message.say({ embed });
-			try {
-				var response = await message.channel.awaitMessages(
-					msg => (msg.content > 0 && msg.content < 6) || msg.content === "exit",
-					{
-						max: 1,
-						maxProcessed: 1,
-						time: 60000,
-						errors: ["time"],
-					}
-				);
-				var videoIndex = parseInt(response.first().content);
-			} catch (err) {
-				console.error(err);
+
+			var response = await message.channel.awaitMessages(
+				msg => (msg.content > 0 && msg.content < 6) || msg.content === "exit",
+				{
+					max: 1,
+					maxProcessed: 1,
+					time: 60000,
+					errors: ["time"],
+				}
+			);
+
+			if (!response.first()) {
 				songEmbed.delete();
 				return message.say("Please try again and enter a number between 1 and 5 or exit");
 			}
+
+			var videoIndex = parseInt(response.first().content);
 			if (response.first().content === "exit") return songEmbed.delete();
+
 			try {
 				var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 			} catch (err) {
