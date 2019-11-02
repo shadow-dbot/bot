@@ -1,18 +1,14 @@
 const { Structures } = require("discord.js");
 const Commando = require("discord.js-commando");
 const path = require("path");
-const mongoose = require("mongoose");
 
-const Command = require("./models/command");
-const Error = require("./models/error");
-const Guilds = require("./models/server");
-const Settings = require("./models/settings");
+const db = require("./models/");
+const checkDB = require("./utils/checkDB");
 
-const messageController = require("./controllers/message/");
-const guildController = require("./controllers/guild/");
-const errorController = require("./controllers/error/");
-const channelController = require("./controllers/channel/");
-const commandController = require("./controllers/command/");
+const messageEvent = require("./events/messageEvents");
+const guildEvent = require("./events/guildEvents");
+const channelEvent = require("./events/channelEvents");
+const commandEvent = require("./events/commandEvents");
 
 const Config = require("./config/key.js");
 
@@ -36,80 +32,39 @@ const client = new Commando.Client({
 	owner: Config.owner,
 });
 
-const mongoURI = Config.mongo_uri;
-
-mongoose
-	.connect(mongoURI, {
-		useNewUrlParser: true,
-	})
-	.then(_ => console.log("connected"))
-	.catch(e => console.error(e));
-
 client.on("ready", () => console.log("Ready"));
 
 client.on("message", async msg => {
-	if (msg.author.bot) return;
-	if (msg.channel.type === "dm") return;
+	await messageEvent.index(client, msg.guild, msg);
+});
 
-	const guild = msg.guild;
+/* Guild Events */
+client.on("guildCreate", async guild => {
+	await guildEvent.create(client, guild);
+});
 
-	await checkGuild(guild);
-
-	let foundGuild = await Guilds.findOne({ guildID: guild.id });
-	let settings = await Settings.findOne({ guildID: guild.id });
-
-	if (settings.profanity.filter) {
-		if (settings.profanity.words.some(word => msg.content.includes(word))) {
-			msg.delete();
-			// msg.reply("You're not allowed to say that word here...")
-		}
-	}
+client.on("guildDelete", async guild => {
+	await guildEvent.delete(client, guild);
 });
 
 client.on("guildMemberAdd", async member => {
-	const guild = member.guild;
-	await checkGuild(guild);
-
-	let foundGuild = await Guilds.findOne({ guildID: guild.id });
-	let settings = await Settings.findOne({ guildID: guild.id });
-
-	if (settings.welcome.msg) {
-		let channelName = "welcome-log";
-		if (settings.welcome.channel) channelName = settings.welcome.channel;
-		let welcomeChannel = member.guild.channels.find(ch => ch.name == channelName);
-		welcomeChannel.send(
-			`Welcome ${member}! to ${member.guild.name}\n You're the ${member.guild.memberCount} `
-		);
-	}
+	await guildEvent.memberAdd(client, member.guild, member);
 });
 
-client.on("commandError", (cmd, error, cmdMessage, query) => {
-	try {
-		const newError = new Error({
-			guildID: cmdMessage.channel.guild.id,
-			userID: cmdMessage.author.id,
-			cmdGroup: cmd.group.id,
-			cmdName: cmd.memberName,
-			errorMsg: error,
-			queryMsg: query.query,
-		});
+client.on("guildUnavailable", async guild => {
+	await guildEvent.unAvailable(client, guild);
+});
 
-		newError.save();
-		client.users.get(Config.owner, false).send("An error occured.");
-		console.log("Submitted error");
-	} catch (e) {
-		console.error(e);
-		console.log("Error submitting to db");
-	}
+client.on("guildBanAdd", async (guild, user) => {
+	await guildEvent.banAdd(client, guild, user);
+});
+
+client.on("commandError", async (cmd, error, cmdMessage, query) => {
+	await commandEvent.error(client, cmdMessage.channel.guild, cmd, error, cmdMessage, query);
 });
 
 client.on("commandRun", async cmd => {
-	const newCommand = new Command({
-		type: cmd.name,
-		group_type: cmd.groupID,
-	});
-
-	await newCommand.save();
+	await commandEvent.stats(client, cmd);
 });
 
 client.registry
@@ -120,7 +75,6 @@ client.registry
 		["info", "Info commands"],
 		["misc", "Misc commands"],
 		["music", "Music commands"],
-		["owner", "Commands for the owner of the bot."],
 	])
 
 	.registerDefaults()
@@ -128,24 +82,3 @@ client.registry
 	.registerCommandsIn(path.join(__dirname, "commands"));
 
 client.login(Config.bot_token);
-
-async function checkGuild(guild) {
-	let foundGuild = await Guilds.findOne({ guildID: guild.id });
-	let settings = await Settings.findOne({ guildID: guild.id });
-
-	if (foundGuild && settings) return;
-
-	settings = new Settings({ guildID: guild.id });
-	settings.save();
-
-	const newServer = new Guilds({
-		guildID: guild.id,
-		ownerID: guild.ownerID,
-		region: guild.region,
-		name: guild.name,
-		icon: guild.icon,
-		settings: settings._id,
-	});
-
-	await newServer.save();
-}
