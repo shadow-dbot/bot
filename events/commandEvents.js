@@ -19,6 +19,7 @@ module.exports = {
 
 		newError.save();
 		client.users.get(Config.owner, false).send("An error occured.");
+		console.log("An error occured, Saved. ");
 	},
 	stats: async (client, cmd) => {
 		const newCommand = new db.Command({
