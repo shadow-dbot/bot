@@ -11,7 +11,7 @@ module.exports = {
 		if (msg.author.bot) return;
 		if (msg.channel.type === "dm") return;
 
-		// await checkGuild.guild(client, guild);
+		await checkDB.guild(client, guild);
 
 		let settings = await db.Settings.findOne({ guildID: guild.id });
 
