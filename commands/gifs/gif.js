@@ -2,12 +2,12 @@ const fetch = require("node-fetch");
 const { tenorAPI } = require("../../config/key.js");
 const { Command } = require("discord.js-commando");
 
-module.exports = class tenorCommand extends Command {
+module.exports = class gifCommand extends Command {
 	constructor(client) {
 		super(client, {
-			name: "tenor",
+			name: "gif",
 			group: "gifs",
-			aliases: ["gif", "search-gif"],
+			aliases: ["tenor", "search-gif"],
 			memberName: "tenor",
 			description: "Provide a query and I'll look for it on tenor!",
 			throttling: {

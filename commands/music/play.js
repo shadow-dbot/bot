@@ -9,7 +9,7 @@ module.exports = class playCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: "play",
-			aliases: ["play-song", "add"],
+			aliases: ["p", "play-song", "add"],
 			memberName: "play",
 			group: "music",
 			description: "Play any song or playlist from youtube",
@@ -38,15 +38,17 @@ module.exports = class playCommand extends Command {
 			try {
 				const playlist = await youtube.getPlaylist(query);
 				const videosObj = await playlist.getVideos(25); // remove the 10 if you removed the queue limit conditions below
-				//const videos = Object.entries(videosObj);
+
 				for (let i = 0; i < videosObj.length; i++) {
 					const video = await videosObj[i].fetch();
 
 					const url = `https://www.youtube.com/watch?v=${video.raw.id}`;
 					const title = video.raw.snippet.title;
-					let duration = this.formatDuration(video.duration);
 					const thumbnail = video.thumbnails.high.url;
+
+					let duration = this.formatDuration(video.duration);
 					if (duration == "00:00") duration = "Live Stream";
+
 					const song = {
 						url,
 						title,
@@ -56,6 +58,7 @@ module.exports = class playCommand extends Command {
 					};
 					message.guild.musicData.queue.push(song);
 				}
+
 				if (message.guild.musicData.isPlaying == false) {
 					message.guild.musicData.isPlaying = true;
 					return this.playSong(message.guild.musicData.queue, message);
@@ -75,13 +78,16 @@ module.exports = class playCommand extends Command {
 			const url = query;
 			try {
 				query = query.replace(/(>|<)/gi, "").split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+
 				const id = query[2].split(/[^0-9a-z_\-]/i)[0];
 				const video = await youtube.getVideoByID(id);
 
 				const title = video.title;
-				let duration = this.formatDuration(video.duration);
 				const thumbnail = video.thumbnails.high.url;
+
+				let duration = this.formatDuration(video.duration);
 				if (duration == "00:00") duration = "Live Stream";
+
 				const song = {
 					url,
 					title,
@@ -91,6 +97,7 @@ module.exports = class playCommand extends Command {
 				};
 
 				message.guild.musicData.queue.push(song);
+
 				if (
 					message.guild.musicData.isPlaying == false ||
 					typeof message.guild.musicData.isPlaying == "undefined"
@@ -105,18 +112,24 @@ module.exports = class playCommand extends Command {
 				return message.say("Something went wrong, please try later");
 			}
 		}
+
 		try {
 			const videos = await youtube.searchVideos(query, 5);
+
 			if (videos.length < 5) {
 				return message.say(
 					`I had some trouble finding what you were looking for, please try again or be more specific`
 				);
 			}
+
 			const vidNameArr = [];
+
 			for (let i = 0; i < videos.length; i++) {
 				vidNameArr.push(`${i + 1}: ${videos[i].title}`);
 			}
+
 			vidNameArr.push("exit");
+
 			const embed = new MessageEmbed()
 				.setColor("#e9f931")
 				.setTitle("Choose a song by commenting a number between 1 and 5")
@@ -126,6 +139,7 @@ module.exports = class playCommand extends Command {
 				.addField("Song 4", vidNameArr[3])
 				.addField("Song 5", vidNameArr[4])
 				.addField("Exit", "exit");
+
 			var songEmbed = await message.say({ embed });
 
 			var response = await message.channel.awaitMessages(
@@ -155,11 +169,14 @@ module.exports = class playCommand extends Command {
 					"An error has occured when trying to get the video ID from youtube"
 				);
 			}
+
 			const url = `https://www.youtube.com/watch?v=${video.raw.id}`;
 			const title = video.title;
-			let duration = this.formatDuration(video.duration);
 			const thumbnail = video.thumbnails.high.url;
+
+			let duration = this.formatDuration(video.duration);
 			if (duration == "00:00") duration = "Live Stream";
+
 			const song = {
 				url,
 				title,
@@ -169,6 +186,7 @@ module.exports = class playCommand extends Command {
 			};
 
 			message.guild.musicData.queue.push(song);
+
 			if (message.guild.musicData.isPlaying == false) {
 				message.guild.musicData.isPlaying = true;
 				songEmbed.delete();
@@ -185,6 +203,7 @@ module.exports = class playCommand extends Command {
 			return message.say("Something went wrong with searching the video you requested :(");
 		}
 	}
+
 	playSong(queue, message) {
 		queue[0].voiceChannel
 			.join()
@@ -198,14 +217,18 @@ module.exports = class playCommand extends Command {
 					)
 					.on("start", () => {
 						message.guild.musicData.songDispatcher = dispatcher;
+
 						const videoEmbed = new MessageEmbed()
 							.setThumbnail(queue[0].thumbnail)
 							.setColor("#e9f931")
 							.addField("Now Playing:", queue[0].title)
 							.addField("Duration:", queue[0].duration);
+
 						if (queue[1]) videoEmbed.addField("Next Song:", queue[1].title);
+
 						message.say(videoEmbed);
 						message.guild.musicData.nowPlaying = queue[0];
+
 						return queue.shift();
 					})
 					.on("finish", () => {
@@ -214,12 +237,14 @@ module.exports = class playCommand extends Command {
 						} else {
 							message.guild.musicData.isPlaying = false;
 							message.guild.musicData.nowPlaying = null;
+
 							return message.guild.me.voice.channel.leave();
 						}
 					})
 					.on("error", e => {
-						message.say("Cannot play song");
 						console.error(e);
+						message.say("Cannot play song");
+
 						return message.guild.me.voice.channel.leave();
 					});
 			})
