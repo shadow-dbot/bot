@@ -4,6 +4,7 @@ const path = require("path");
 
 const db = require("../models");
 const checkDB = require("../utils/checkDB");
+const Config = require("../config/key");
 
 module.exports = {
 	create: async (client, guild) => {
@@ -28,7 +29,7 @@ module.exports = {
 	memberAdd: async (client, guild, member) => {
 		await checkDB.guild(client, guild);
 
-		let settings = await Settings.findOne({ guildID: guild.id });
+		let settings = await db.Settings.findOne({ guildID: guild.id });
 
 		if (settings.welcome.msg) {
 			let channelName = "welcome-log";

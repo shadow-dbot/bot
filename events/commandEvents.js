@@ -3,11 +3,13 @@ const Moment = require("moment");
 const path = require("path");
 
 const db = require("../models");
+const checkDB = require("../utils/checkDB");
+const Config = require("../config/key");
 
 module.exports = {
 	error: async (client, guild, cmd, error, cmdMessage, query) => {
 		const newError = new db.Error({
-			guildID: cmdMessage.channel.guild.id,
+			guildID: guild.id,
 			userID: cmdMessage.author.id,
 			cmdGroup: cmd.group.id,
 			cmdName: cmd.memberName,
