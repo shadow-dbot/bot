@@ -7,14 +7,13 @@ module.exports = {
 		if (msg.author.bot) return;
 		if (msg.channel.type === "dm") return;
 
-		await checkGuild(guild);
+		// await checkGuild.guild(client, guild);
 
 		let settings = await Settings.findOne({ guildID: guild.id });
 
 		if (settings.profanity.filter) {
 			if (settings.profanity.words.some(word => msg.content.includes(word))) {
 				msg.delete();
-				// msg.reply("You're not allowed to say that word here...")
 			}
 		}
 	},
