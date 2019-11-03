@@ -13,12 +13,6 @@ module.exports = {
 		console.log(
 			`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`
 		);
-
-		guild.channels
-			.find(`name`, `general`)
-			.send(
-				`Thanks for inviting me! This bot is in BETA If you encounter any error please let us know.`
-			);
 	},
 
 	delete: async (client, guild) => {
