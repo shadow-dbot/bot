@@ -15,8 +15,8 @@ module.exports = {
 
 		let settings = await db.Settings.findOne({ guildID: guild.id });
 
-		if (settings.profanity.filter) {
-			if (settings.profanity.words.some(word => msg.content.includes(word))) {
+		if (settings.filter.active) {
+			if (settings.filter.words.some(word => msg.content.includes(word))) {
 				msg.delete();
 			}
 		}
