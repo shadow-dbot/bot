@@ -17,7 +17,6 @@ module.exports = {
 
 	delete: async (client, guild) => {
 		console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
-		// client.user.setActivity(`Serving ${client.guilds.size} servers`);
 	},
 
 	memberAdd: async (client, guild, member) => {
@@ -25,12 +24,14 @@ module.exports = {
 
 		let settings = await db.Settings.findOne({ guildID: guild.id });
 
-		if (settings.welcome.msg) {
-			let channelName = "welcome-log";
+		if (settings.welcome.active) {
+			let channelName, welcomeChannel;
+
 			if (settings.welcome.channel) channelName = settings.welcome.channel;
-			let welcomeChannel = member.guild.channels.find(ch => ch.name == channelName);
+
+			welcomeChannel = member.guild.channels.find(ch => ch.name == channelName);
 			welcomeChannel.send(
-				`Welcome ${member}! to ${member.guild.name}\n You're the ${member.guild.memberCount} `
+				`Welcome ${member}! to ${member.guild.name}\nYou're the ${member.guild.memberCount}th member! `
 			);
 		}
 	},
