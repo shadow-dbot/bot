@@ -8,17 +8,21 @@ const settingsModel = new mongoose.Schema({
 		required: true,
 	},
 	welcome: {
-		msg: {
+		active: {
 			type: Boolean,
 			default: false,
+		},
+		msg: {
+			type: String,
+			default: "Welcome to this server ${user}",
 		},
 		channel: {
 			type: String,
 			default: "general",
 		},
 	},
-	profanity: {
-		filter: {
+	filter: {
+		active: {
 			type: Boolean,
 			default: false,
 		},
