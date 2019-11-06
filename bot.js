@@ -2,8 +2,8 @@ const { Structures } = require("discord.js");
 const Commando = require("discord.js-commando");
 const path = require("path");
 
-const db = require("./models/");
-const checkDB = require("./utils/checkDB");
+// const db = require("./models/");
+// const checkDB = require("./utils/checkDB");
 
 const messageEvent = require("./events/messageEvents");
 const guildEvent = require("./events/guildEvents");

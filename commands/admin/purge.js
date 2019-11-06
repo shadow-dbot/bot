@@ -32,12 +32,18 @@ module.exports = class purgeCommand extends Command {
 
 		amount = parseInt(amount);
 		try {
-			msg.channel.bulkDelete(amount).then(_ => {
-				msg.channel
-					.send(`Deleted ${amount} messages.`)
-					.then(m => m.delete(2500))
-					.catch(e => console.error(e));
-			});
+			msg.channel
+				.bulkDelete(amount)
+				.then(_ => {
+					msg.channel
+						.send(`Deleted ${amount} messages.`)
+						.then(m => m.delete(2500))
+						.catch(e => console.error(e));
+				})
+				.catch(err => {
+					console.log(err);
+					msg.channel.send(err.message);
+				});
 		} catch (e) {
 			console.log(e);
 			return msg.reply("An Error occured, Please try again later.");
