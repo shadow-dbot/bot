@@ -19,6 +19,7 @@
 	},
 	"homepage": "https://github.com/QGIsK/discordbot#readme",
 	"dependencies": {
+		"dblapi.js": "^2.3.0",
 		"discord.js": "github:discordjs/discord.js#master",
 		"discord.js-commando": "github:discordjs/Commando",
 		"ffmpeg-static": "^2.5.0",
