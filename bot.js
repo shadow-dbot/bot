@@ -44,7 +44,10 @@ const client = new Commando.Client({
 	owner: Config.owner,
 });
 
-client.on("ready", () => console.log("Ready"));
+client.on("ready", () => {
+	console.log("Ready");
+	client.user.setStatus("dnd");
+});
 
 client.on("message", async msg => {
 	await messageEvent.index(client, msg.guild, msg);
