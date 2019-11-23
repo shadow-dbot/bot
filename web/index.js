@@ -4,28 +4,24 @@ const path = require("path");
 const cors = require("cors");
 const helmet = require("helmet");
 
-const init = (app, client) => {
-	app.use(helmet());
-	app.use(cors());
-	app.use(morgan("dev"));
+const app = express();
 
-	app.use("/public", express.static("resources/public"));
-	app.use("/static", express.static("resources/static"));
+app.use(helmet());
+app.use(cors());
+app.use(morgan("dev"));
 
-	app.use((req, res, next) => {
-		next();
-	});
+app.use("/public", express.static("resources/public"));
+app.use("/static", express.static("resources/static"));
 
-	app.use("/api", express.json(), require("./app/routes/api/"));
+app.use((req, res, next) => {
+	next();
+});
 
-	app.get("*", (req, res) => {
-		res.sendFile(path.join(__dirname + "/resources/views/index.html"));
-	});
+app.use("/api", express.json(), require("./app/routes/api/"));
 
-	const PORT = process.env.PORT;
-	app.listen(PORT, _ => console.log(`Listening on port ${PORT}`));
-};
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname + "/resources/views/index.html"));
+});
 
-module.exports = (app, client) => {
-	init(app, client);
-};
+const PORT = process.env.PORT;
+app.listen(PORT, _ => console.log(`Listening on port ${PORT}`));
