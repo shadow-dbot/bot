@@ -42,7 +42,6 @@ if (process.env.NODE_ENV === "production") {
 
 client.on("ready", () => {
 	console.log("Ready");
-	client.user.setStatus("dnd");
 });
 
 client.on("message", async msg => {
