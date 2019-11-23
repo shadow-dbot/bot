@@ -27,17 +27,18 @@ const client = new Commando.Client({
 	owner: process.env.BOT_OWNER,
 });
 
-// const DBL = require("dblapi.js");
-// const dbl = new DBL(process.env.DBL_API_KEY, client);
+if (process.env.NODE_ENV === "production") {
+	const DBL = require("dblapi.js");
+	const dbl = new DBL(process.env.DBL_API_KEY, client);
 
-// Optional events
-// dbl.on("posted", () => {
-// console.log("Server count posted!");
-// });
+	dbl.on("posted", () => {
+		console.log("Server count posted!");
+	});
 
-// dbl.on("error", e => {
-// console.log(`Oops! ${e}`);
-// });
+	dbl.on("error", e => {
+		console.log(`Oops! ${e}`);
+	});
+}
 
 client.on("ready", () => {
 	console.log("Ready");
