@@ -12,18 +12,6 @@ const commandEvent = require("./events/commandEvents");
 
 const Config = require("./config/key.js");
 
-// const DBL = require("dblapi.js");
-// const dbl = new DBL("Your top.gg token", client);
-
-// // Optional events
-// dbl.on("posted", () => {
-// 	console.log("Server count posted!");
-// });
-
-// dbl.on("error", e => {
-// 	console.log(`Oops! ${e}`);
-// });
-
 Structures.extend("Guild", Guild => {
 	class MusicGuild extends Guild {
 		constructor(client, data) {
@@ -43,6 +31,18 @@ const client = new Commando.Client({
 	commandPrefix: Config.prefix,
 	owner: Config.owner,
 });
+
+// const DBL = require("dblapi.js");
+// const dbl = new DBL(Config.DBLApiKey, client);
+
+// Optional events
+// dbl.on("posted", () => {
+// console.log("Server count posted!");
+// });
+
+// dbl.on("error", e => {
+// console.log(`Oops! ${e}`);
+// });
 
 client.on("ready", () => {
 	console.log("Ready");
