@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const fetch = require("node-fetch");
-const { newsAPI } = require("../../config/key.js");
+const newsAPI = process.env.NEWS_API;
 const { Command } = require("discord.js-commando");
 
 module.exports = class globalNewsCommand extends Command {

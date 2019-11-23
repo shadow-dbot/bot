@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const badwords = require("../utils/badwords.js");
+const badwords = require("../../utils/badwords.js");
 
 const settingsModel = new mongoose.Schema({
 	guildID: {

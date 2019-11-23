@@ -1,6 +1,5 @@
 const fetch = require("node-fetch");
 const { Command } = require("discord.js-commando");
-const { bot_invite_link } = require("../../config/key");
 
 module.exports = class inviteCommand extends Command {
 	constructor(client) {
@@ -18,6 +17,6 @@ module.exports = class inviteCommand extends Command {
 	}
 
 	run(msg) {
-		msg.reply(bot_invite_link);
+		msg.reply(process.env.BOT_INVITE_LINK);
 	}
 };

@@ -1,4 +1,4 @@
-const db = require("./../models/");
+const db = require("./../database/");
 
 module.exports = {
 	guild: async (client, guild) => {

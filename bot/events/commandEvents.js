@@ -2,9 +2,8 @@ const Discord = require("discord.js");
 const Moment = require("moment");
 const path = require("path");
 
-const db = require("../models");
-const checkDB = require("../utils/checkDB");
-const Config = require("../config/key");
+const db = require("../../database");
+const checkDB = require("../../utils/checkDB");
 
 module.exports = {
 	error: async (client, guild, cmd, error, cmdMessage, query) => {
@@ -18,7 +17,7 @@ module.exports = {
 		});
 
 		newError.save();
-		client.users.get(Config.owner, false).send("An error occured.");
+		client.users.get(process.env.BOT_OWNER, false).send("An error occured.");
 		console.log("An error occured, Saved. ");
 	},
 	stats: async (client, cmd) => {

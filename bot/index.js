@@ -10,8 +10,6 @@ const guildEvent = require("./events/guildEvents");
 const channelEvent = require("./events/channelEvents");
 const commandEvent = require("./events/commandEvents");
 
-const Config = require("./config/key.js");
-
 Structures.extend("Guild", Guild => {
 	class MusicGuild extends Guild {
 		constructor(client, data) {
@@ -28,12 +26,12 @@ Structures.extend("Guild", Guild => {
 });
 
 const client = new Commando.Client({
-	commandPrefix: Config.prefix,
-	owner: Config.owner,
+	commandPrefix: process.env.PREFIX,
+	owner: process.env.BOT_OWNER,
 });
 
 // const DBL = require("dblapi.js");
-// const dbl = new DBL(Config.DBLApiKey, client);
+// const dbl = new DBL(process.env.DBL_API_KEY, client);
 
 // Optional events
 // dbl.on("posted", () => {
@@ -96,4 +94,4 @@ client.registry
 
 	.registerCommandsIn(path.join(__dirname, "commands"));
 
-client.login(Config.bot_token);
+client.login(process.env.BOT_TOKEN);

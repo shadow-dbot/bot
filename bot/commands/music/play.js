@@ -1,9 +1,8 @@
 const { Command } = require("discord.js-commando");
 const { MessageEmbed } = require("discord.js");
-const { youtubeAPI } = require("../../config/key.js");
 const Youtube = require("simple-youtube-api");
 const ytdl = require("ytdl-core");
-const youtube = new Youtube(youtubeAPI);
+const youtube = new Youtube(process.env.YOUTUBE_API);
 
 module.exports = class playCommand extends Command {
 	constructor(client) {

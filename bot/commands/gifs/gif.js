@@ -1,6 +1,7 @@
 const fetch = require("node-fetch");
-const { tenorAPI } = require("../../config/key.js");
 const { Command } = require("discord.js-commando");
+
+const tenorAPI = process.env.TENOR_API;
 
 module.exports = class gifCommand extends Command {
 	constructor(client) {

@@ -1,15 +1,16 @@
 const fetch = require("node-fetch");
-const { tenorAPI } = require("../../config/key");
 const { Command } = require("discord.js-commando");
 
-module.exports = class catCommand extends Command {
+const tenorAPI = process.env.TENOR_API;
+
+module.exports = class dogCommand extends Command {
 	constructor(client) {
 		super(client, {
-			name: "cat",
-			aliases: ["cat-pic", "cats"],
+			name: "dog",
+			aliases: ["dog-pic", "dogs"],
 			group: "misc",
-			memberName: "cat",
-			description: "Replies with a cute cat picture",
+			memberName: "dog",
+			description: "Replies with a cute dog picture",
 			throttling: {
 				usages: 2,
 				duration: 10,
@@ -18,11 +19,11 @@ module.exports = class catCommand extends Command {
 	}
 
 	run(message) {
-		fetch(`https://api.tenor.com/v1/random?key=${tenorAPI}&q=cat&limit=1`)
+		fetch(`https://api.tenor.com/v1/random?key=${tenorAPI}&q=dog&limit=1`)
 			.then(res => res.json())
 			.then(json => message.say(json.results[0].url))
 			.catch(e => {
-				message.say("Request to find a kitty failed :(");
+				message.say("Request to find a doggo failed :(");
 				return console.error(e);
 			});
 	}

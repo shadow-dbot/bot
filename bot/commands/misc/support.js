@@ -1,5 +1,4 @@
 const { Command } = require("discord.js-commando");
-const { support_link } = require("../../config/key");
 
 module.exports = class supportCommand extends Command {
 	constructor(client) {
@@ -17,6 +16,6 @@ module.exports = class supportCommand extends Command {
 	}
 
 	run(msg) {
-		msg.reply(support_link);
+		msg.reply(process.env.SUPPORT_LINK);
 	}
 };
