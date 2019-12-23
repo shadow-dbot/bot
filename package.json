@@ -1,15 +1,13 @@
 {
 	"name": "shadow-bot",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "",
 	"main": "core/index.js",
 	"scripts": {
 		"start": "node core/",
 		"start:bot": "node bot/",
-		"start:app": "node app/",
 		"dev": "nodemon core/",
-		"dev:bot": "nodemon bot/",
-		"dev:app": "nodemon core/"
+		"dev:bot": "nodemon bot/"
 	},
 	"repository": {
 		"type": "git",
@@ -28,8 +26,6 @@
 		"discord.js": "github:discordjs/discord.js#master",
 		"discord.js-commando": "github:discordjs/Commando",
 		"dotenv": "^8.2.0",
-		"express": "^4.17.1",
-		"express-brute": "^1.0.1",
 		"ffmpeg-static": "^2.5.0",
 		"helmet": "^3.21.2",
 		"jsonwebtoken": "^8.5.1",
