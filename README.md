@@ -1,5 +1,8 @@
 # Shadow-bot
 
+### Prefix
+  * Default: *
+
 
 ### Coming soon:
 
