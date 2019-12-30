@@ -17,7 +17,7 @@
   * purge
 
 #### gifs:
-  * gif (uses tenor api)
+  * gif (Tenor)
 
 #### info:
   * avatar
@@ -27,11 +27,11 @@
 #### misc:
   * cat
   * dog
-  * global-news (uses news api - source reuters)
-  * insult (https://evilinsult.com/)
+  * global-news (Reuters 
+  * insult 
   * invite (Bot invite link)
-  * joke (https://sv443.net/jokeapi/)
-  * momjoke (https://insults.tr00st.co.uk/your_mom/)
+  * joke 
+  * momjoke
   * random
   * reddit
   * support (Support server invite link)
@@ -57,3 +57,6 @@
   * Tenor
   * Youtube
   * News API
+  * Evilinsult
+  * sv443's jokeapi
+  * insults tr00st's your_mom
