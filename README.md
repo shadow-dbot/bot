@@ -16,15 +16,15 @@
   * kick
   * purge
 
-#### gifs:
+#### Gifs:
   * gif (Tenor)
 
-#### info:
+#### Info:
   * avatar
   * serverstats
   * uptime
 
-#### misc:
+#### Misc:
   * cat
   * dog
   * global-news (Reuters 
@@ -36,7 +36,7 @@
   * reddit
   * support (Support server invite link)
 
-#### music:
+#### Music:
   * clear
   * leave
   * loop
