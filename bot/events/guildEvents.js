@@ -44,7 +44,7 @@ module.exports = {
 
 		let guildLogChannel = guild.channels.find(chan => chan.name == "guild-log");
 
-		const embed = new Discord.RichEmbed()
+		const embed = new Discord.MessageEmbed()
 			.setColor("#ff0000")
 			.setAuthor(`${user.tag}`, `${user.avatarURL}`)
 			.addField("Banned User", `${user.tag}`, true)

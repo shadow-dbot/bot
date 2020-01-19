@@ -1,5 +1,6 @@
 const { Command } = require("discord.js-commando");
-const Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js");
+
 const moment = require("moment");
 
 module.exports = class serverStats extends Command {
@@ -20,7 +21,7 @@ module.exports = class serverStats extends Command {
 			let UserAmount = msg.guild.members.filter(member => !member.user.bot).size;
 			let serverIcon = msg.guild.displayAvatarURL;
 
-			let embed = new Discord.RichEmbed()
+			let embed = new MessageEmbed()
 				// .setTitle("Server information")
 				.setColor("ff0000")
 				.setThumbnail(serverIcon)
