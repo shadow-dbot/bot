@@ -1,5 +1,6 @@
 const { Command } = require("discord.js-commando");
 const Discord = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = class avatar extends Command {
 	constructor(client) {
@@ -16,10 +17,14 @@ module.exports = class avatar extends Command {
 
 	async run(msg) {
 		try {
+			// let avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
 			let user = msg.mentions.users.first() || msg.author;
-			let embed = new Discord.RichEmbed()
-				.setImage(user.avatarURL)
-				.setDescription(`[Direct Link](${user.avatarURL})`);
+			let embed = new MessageEmbed()
+				.setImage(user.avatarURL())
+				.setDescription(`[Direct Link](${user.avatarURL()})`);
+
+			console.log(user.avatarURL());
+
 			msg.channel.send(embed);
 		} catch (e) {
 			console.log(e);
