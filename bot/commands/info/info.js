@@ -17,7 +17,6 @@ module.exports = class info extends Command {
 
 	async run(msg) {
 		try {
-			console.log(this.client.users.size);
 			let minutes = parseInt((this.client.uptime / (1000 * 60)) % 60),
 				hours = parseInt((this.client.uptime / (1000 * 60 * 60)) % 24);
 
@@ -38,8 +37,6 @@ module.exports = class info extends Command {
 						users.push(members[i].user.id);
 				}
 			}
-
-			console.log(users.length);
 
 			let embed = new MessageEmbed()
 				// .setTitle("Server information")
