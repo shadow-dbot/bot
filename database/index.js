@@ -14,4 +14,5 @@ module.exports = {
 	Error: require("./models/error"),
 	Guilds: require("./models/server"),
 	Settings: require("./models/settings"),
+	Suggestion: require("./models/suggestion"),
 };
