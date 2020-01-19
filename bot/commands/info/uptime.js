@@ -11,7 +11,7 @@ module.exports = class upTimeCommand extends Command {
 		});
 	}
 	run(message) {
-		var seconds = parseInt((this.client.uptime / 1000) % 60),
+		let seconds = parseInt((this.client.uptime / 1000) % 60),
 			minutes = parseInt((this.client.uptime / (1000 * 60)) % 60),
 			hours = parseInt((this.client.uptime / (1000 * 60 * 60)) % 24);
 

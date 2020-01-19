@@ -1,8 +1,9 @@
 const { Command } = require("discord.js-commando");
 const Discord = require("discord.js");
 const moment = require("moment");
+const { MessageEmbed } = require("discord.js");
 
-module.exports = class serverStats extends Command {
+module.exports = class info extends Command {
 	constructor(client) {
 		super(client, {
 			name: "info",
@@ -10,27 +11,33 @@ module.exports = class serverStats extends Command {
 			aliases: ["information", "creator"],
 			memberName: "information",
 			guildOnly: false,
-			description: "Send info about the bot and it's",
+			description: "Send info about the bot and it's creator",
 		});
 	}
 
 	async run(msg) {
 		try {
-			let embed = new Discord.RichEmbed()
+			console.log(this.client.users.size);
+			let minutes = parseInt((this.client.uptime / (1000 * 60)) % 60),
+				hours = parseInt((this.client.uptime / (1000 * 60 * 60)) % 24);
+
+			hours = hours < 10 ? "0" + hours : hours;
+			minutes = minutes < 10 ? "0" + minutes : minutes;
+
+			let embed = new MessageEmbed()
 				// .setTitle("Server information")
 				.setColor("ff0000")
-				.setThumbnail(serverIcon)
+				.setTitle("Information about me ")
+				.setTimestamp()
+				.addField("I'm currently in ", `${this.client.guilds.size} servers`, false)
+				.addField(`With a total of `, `${this.client.users.size} users`, false)
+				// .addField(with a total of , this.client.guilds.size)
 				.addField(
-					"Created on",
-					moment(msg.guild.createdAt).format("MMMM Do YYYY, h:mm:ss a")
+					`:chart_with_upwards_trend: `,
+					`I've been running for **${hours}** hours, **${minutes}** minutes!`,
+					false
 				)
-				.addField(
-					"You joined on",
-					moment(msg.member.joinedAt).format("MMMM Do YYYY, h:mm:ss a")
-				)
-				.addField("Total Members", msg.guild.memberCount, true)
-				.addField("Amount of bots", botAmount, true)
-				.addField("Amount of users", UserAmount, true);
+				.setDescription(`Created by [Demian](https://demiann.xyz)`);
 
 			msg.channel.send(embed);
 		} catch (e) {
