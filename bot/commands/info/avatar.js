@@ -23,8 +23,6 @@ module.exports = class avatar extends Command {
 				.setImage(user.avatarURL())
 				.setDescription(`[Direct Link](${user.avatarURL()})`);
 
-			console.log(user.avatarURL());
-
 			msg.channel.send(embed);
 		} catch (e) {
 			console.log(e);
