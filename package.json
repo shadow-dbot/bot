@@ -6,8 +6,8 @@
 	"scripts": {
 		"start": "node core/",
 		"start:bot": "node bot/",
-		"dev": "nodemon core/",
-		"dev:bot": "nodemon bot/"
+		"dev": "npx nodemon core/",
+		"dev:bot": "npx nodemon bot/"
 	},
 	"repository": {
 		"type": "git",
@@ -23,7 +23,7 @@
 	"dependencies": {
 		"cors": "^2.8.5",
 		"dblapi.js": "^2.3.0",
-		"discord.js": "github:discordjs/discord.js#master",
+		"discord.js": "github:discordjs/discord.js",
 		"discord.js-commando": "github:discordjs/Commando",
 		"dotenv": "^8.2.0",
 		"ffmpeg-static": "^3.0.0",
