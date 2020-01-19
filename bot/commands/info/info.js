@@ -23,28 +23,13 @@ module.exports = class info extends Command {
 			hours = hours < 10 ? "0" + hours : hours;
 			minutes = minutes < 10 ? "0" + minutes : minutes;
 
-			let guilds = this.client.guilds.array();
-			let users = [];
-
-			for (var i = 0; i < guilds.length; i++) {
-				let members = guilds[i].members.array();
-
-				for (var i = 0; i < members.length; i++) {
-					if (
-						members[i].user.id !== this.client.user.id &&
-						users.indexOf(members[i].user.id) === -1
-					)
-						users.push(members[i].user.id);
-				}
-			}
-
 			let embed = new MessageEmbed()
 				// .setTitle("Server information")
 				.setColor("ff0000")
 				.setTitle("Information about me ")
 				.setTimestamp()
 				.addField("I'm currently in ", `${this.client.guilds.size} servers`, false)
-				.addField(`With a total of `, `${users.length} users`, false)
+				.addField(`With a total of `, `${this.client.users.size} users`, false)
 				// .addField(with a total of , this.client.guilds.size)
 				.addField(
 					`:chart_with_upwards_trend: `,
