@@ -28,10 +28,6 @@ module.exports = class suggestion extends Command {
 
 	async run(msg, { query }) {
 		try {
-			console.log(query);
-
-			console.log(msg.guild);
-
 			const suggestion = await DB.Suggestion.findOne({ suggestion: query });
 
 			if (suggestion) {
@@ -49,6 +45,12 @@ module.exports = class suggestion extends Command {
 			});
 
 			await newSuggestion.save();
+
+			this.client.users
+				.get(process.env.BOT_OWNER, false)
+				.send(
+					`Hey! It's seems theres a new suggestion!\n${query}\nFrom: ${msg.author.tag}`
+				);
 
 			msg.reply("Thanks for the suggestion!");
 		} catch (e) {
