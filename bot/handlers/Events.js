@@ -7,9 +7,8 @@ const events = client => {
 			`${client.commandPrefix}help || Serving ${client.guilds.size} servers and ${client.users.size} users`
 		);
 		client.guilds.forEach(guild => {
-			console.log(guild.memberCount);
+			console.log(guild.name, guild.memberCount);
 		});
-		
 	});
 
 	client.on("message", async msg => {
