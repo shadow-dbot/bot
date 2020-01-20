@@ -21,6 +21,7 @@ Structures.extend("Guild", Guild => {
 const client = new Commando.Client({
 	commandPrefix: process.env.PREFIX,
 	owner: process.env.BOT_OWNER,
+	fetchAllMembers: true,
 });
 
 Handlers(client);
