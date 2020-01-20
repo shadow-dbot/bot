@@ -12,10 +12,17 @@ module.exports = {
 		console.log(
 			`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`
 		);
+
+		client.user.setActivity(
+			`${client.commandPrefix}help || Serving ${client.guilds.size} servers and ${client.users.size} users`
+		);
 	},
 
 	delete: async (client, guild) => {
 		console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+		client.user.setActivity(
+			`${client.commandPrefix}help || Serving ${client.guilds.size} servers and ${client.users.size} users`
+		);
 	},
 
 	memberAdd: async (client, guild, member) => {

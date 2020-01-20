@@ -3,6 +3,9 @@ const event = require("../events/");
 const events = client => {
 	client.on("ready", () => {
 		console.log("Ready");
+		client.user.setActivity(
+			`${client.commandPrefix}help || Serving ${client.guilds.size} servers and ${client.users.size} users`
+		);
 	});
 
 	client.on("message", async msg => {

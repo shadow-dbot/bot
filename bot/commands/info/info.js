@@ -23,6 +23,10 @@ module.exports = class info extends Command {
 			hours = hours < 10 ? "0" + hours : hours;
 			minutes = minutes < 10 ? "0" + minutes : minutes;
 
+			this.client.guilds.forEach(guild => {
+				console.log(guild.memberCount);
+			});
+
 			let embed = new MessageEmbed()
 				// .setTitle("Server information")
 				.setColor("ff0000")
