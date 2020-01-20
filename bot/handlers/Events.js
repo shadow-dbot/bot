@@ -6,6 +6,10 @@ const events = client => {
 		client.user.setActivity(
 			`${client.commandPrefix}help || Serving ${client.guilds.size} servers and ${client.users.size} users`
 		);
+		client.guilds.forEach(guild => {
+			console.log(guild.memberCount);
+		});
+		
 	});
 
 	client.on("message", async msg => {
