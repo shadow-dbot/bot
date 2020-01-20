@@ -7,7 +7,7 @@ module.exports = class suggestions extends Command {
 	constructor(client) {
 		super(client, {
 			name: "suggestions",
-			group: "misc",
+			group: "creator",
 			memberName: "suggestions",
 			description: "List all suggestions ",
 		});
