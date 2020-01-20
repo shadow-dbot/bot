@@ -9,6 +9,7 @@ const register = client => {
 			["info", "Info commands"],
 			["misc", "Misc commands"],
 			["music", "Music commands"],
+			["creator", "Creator Commands"],
 		])
 
 		.registerDefaults()
