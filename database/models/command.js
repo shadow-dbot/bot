@@ -9,6 +9,10 @@ const commandModel = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	guild: {
+		ref: "Guild",
+		type: mongoose.Schema.Types.ObjectId,
+	},
 	time: {
 		type: Date,
 		default: Date.now(),

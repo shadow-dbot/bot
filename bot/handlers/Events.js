@@ -40,8 +40,8 @@ const events = client => {
 		await event.command.error(client, cmdMessage.channel.guild, cmd, error, cmdMessage, query);
 	});
 
-	client.on("commandRun", async cmd => {
-		await event.command.stats(client, cmd);
+	client.on("commandRun", async (cmd, x, cmdMessage) => {
+		await event.command.stats(client, cmd, cmdMessage.guild);
 	});
 };
 

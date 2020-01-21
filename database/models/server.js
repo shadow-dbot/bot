@@ -21,6 +21,7 @@ const guildModel = new mongoose.Schema({
 		type: String,
 	},
 	settings: {
+		ref: "Settings",
 		type: mongoose.Schema.Types.ObjectId,
 	},
 });
