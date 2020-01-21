@@ -40,10 +40,12 @@ module.exports = class serverStats extends Command {
 					"Created on",
 					moment(msg.guild.createdAt).format("MMMM Do YYYY, h:mm:ss a")
 				)
+
 				.addField(
 					"You joined on",
 					moment(msg.member.joinedAt).format("MMMM Do YYYY, h:mm:ss a")
 				)
+				.addField("Region", msg.guild.region)
 				.addField(
 					"People in this guild have used my commands",
 					`${commandsUsed} times`,
