@@ -7,7 +7,7 @@ module.exports = class clearCommand extends Command {
 			aliases: ["skipall"],
 			memberName: "clear",
 			group: "music",
-			description: "Skip all songs in queue",
+			description: "Clears the music queue",
 			guildOnly: true,
 		});
 	}

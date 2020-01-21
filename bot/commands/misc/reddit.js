@@ -10,8 +10,7 @@ module.exports = class redditCommand extends Command {
 			aliases: ["subreddit", "reddit-search"],
 			group: "misc",
 			memberName: "reddit",
-			description:
-				"Replies with 5 top daily posts in wanted subreddit, you can specify sorting and time",
+			description: "Responds with the daily top 5 of x Sub Reddit",
 			throttling: {
 				usages: 2,
 				duration: 10,

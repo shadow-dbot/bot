@@ -10,7 +10,7 @@ module.exports = class catCommand extends Command {
 			aliases: ["cat-pic", "cats"],
 			group: "misc",
 			memberName: "cat",
-			description: "Replies with a cute cat picture",
+			description: "Responds with a random Cat image",
 			throttling: {
 				usages: 2,
 				duration: 10,

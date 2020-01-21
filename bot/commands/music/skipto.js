@@ -6,8 +6,7 @@ module.exports = class skipToCommand extends Command {
 			name: "skipto",
 			memberName: "skipto",
 			group: "music",
-			description:
-				"Skip to a specific song in the queue, provide the song number as an argument",
+			description: "Skips to x song in the queue",
 			guildOnly: true,
 			args: [
 				{
@@ -24,7 +23,7 @@ module.exports = class skipToCommand extends Command {
 		if (songNumber < 1 && songNumber >= message.guild.musicData.queue.length) {
 			return message.reply("Please enter a valid song number");
 		}
-		
+
 		var voiceChannel = message.member.voice.channel;
 		if (!voiceChannel) return message.reply("Join a channel and try again");
 

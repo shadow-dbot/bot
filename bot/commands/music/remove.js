@@ -6,7 +6,7 @@ module.exports = class removeSongCommand extends Command {
 			name: "remove",
 			memberName: "remove",
 			group: "music",
-			description: "Remove a specific song from queue",
+			description: "Removes x song from the music queue",
 			guildOnly: true,
 			args: [
 				{

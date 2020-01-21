@@ -8,7 +8,7 @@ module.exports = class inviteCommand extends Command {
 			aliases: ["invite", "invme", "botinv"],
 			group: "misc",
 			memberName: "invite",
-			description: "My invite link",
+			description: "Responds with the bots invite link",
 			throttling: {
 				usages: 1,
 				duration: 60,

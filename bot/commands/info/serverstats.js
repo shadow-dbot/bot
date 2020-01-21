@@ -11,7 +11,8 @@ module.exports = class serverStats extends Command {
 			aliases: ["server"],
 			memberName: "serverstats",
 			guildOnly: true,
-			description: "Returns server stats",
+			description:
+				"Sends server statistics - Creation date, Join date, Member count, Bot count and User count ",
 		});
 	}
 

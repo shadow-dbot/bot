@@ -7,7 +7,7 @@ module.exports = class kickCommand extends Command {
 			aliases: ["kick-member", "throw"],
 			memberName: "kick",
 			group: "admin",
-			description: "Kicks a tagged member",
+			description: "Kick's the tagged user.",
 			guildOnly: true,
 			userPermissions: ["MANAGE_MESSAGES", "KICK_MEMBERS", "BAN_MEMBERS"],
 			args: [

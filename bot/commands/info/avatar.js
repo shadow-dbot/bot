@@ -10,7 +10,7 @@ module.exports = class avatar extends Command {
 			aliases: ["icon"],
 			memberName: "avatar",
 			guildOnly: true,
-			description: "Returns user avatar url",
+			description: "Sends either your Avatar or the tagged user's",
 			examples: ["avatar"],
 		});
 	}

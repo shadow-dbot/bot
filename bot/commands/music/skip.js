@@ -7,7 +7,7 @@ module.exports = class skipCommand extends Command {
 			aliases: ["skip-song", "advance-song"],
 			memberName: "skip",
 			group: "music",
-			description: "Skip the current playing song",
+			description: "Skips the current song",
 			guildOnly: true,
 		});
 	}

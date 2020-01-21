@@ -8,7 +8,7 @@ module.exports = class leaveCommand extends Command {
 			group: "music",
 			memberName: "leave",
 			guildOnly: true,
-			description: "Leaves voice channel if in one",
+			description: "Leaves the voice channel",
 		});
 	}
 

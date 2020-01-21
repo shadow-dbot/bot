@@ -8,7 +8,7 @@ module.exports = class volumeCommand extends Command {
 			group: "music",
 			memberName: "volume",
 			guildOnly: true,
-			description: "Adjust song volume",
+			description: "Change the music volume",
 			throttling: {
 				usages: 1,
 				duration: 5,

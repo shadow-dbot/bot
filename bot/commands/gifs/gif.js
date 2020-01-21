@@ -10,7 +10,7 @@ module.exports = class gifCommand extends Command {
 			group: "gifs",
 			aliases: ["tenor", "search-gif"],
 			memberName: "tenor",
-			description: "Provide a query and I'll look for it on tenor!",
+			description: "Sends a random gif or provide a search query - Uses Tenor API",
 			throttling: {
 				usages: 1,
 				duration: 4,

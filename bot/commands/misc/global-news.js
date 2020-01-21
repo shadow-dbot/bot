@@ -10,7 +10,7 @@ module.exports = class globalNewsCommand extends Command {
 			aliases: ["world-news"],
 			group: "misc",
 			memberName: "global-news",
-			description: "Replies with the 5 latest global news headlines",
+			description: "Sends the latest 5 global news headlines Sources: reuters",
 			throttling: {
 				usages: 2,
 				duration: 10,

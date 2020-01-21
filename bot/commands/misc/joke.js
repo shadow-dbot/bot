@@ -8,7 +8,7 @@ module.exports = class jokeCommand extends Command {
 			aliases: ["joke"],
 			group: "misc",
 			memberName: "joke",
-			description: "Make a joke, Some might be a bit dark.",
+			description: "Responds with a random Joke! 18+",
 			throttling: {
 				usages: 2,
 				duration: 10,

@@ -7,7 +7,7 @@ module.exports = class purgeCommand extends Command {
 			group: "admin",
 			memberName: "purge",
 			guildOnly: true,
-			description: "Deletes X amount of messages",
+			description: "Purge's x Amount of messages",
 			throttling: {
 				usages: 2,
 				duration: 1500,

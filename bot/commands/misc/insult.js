@@ -8,7 +8,7 @@ module.exports = class insultCommand extends Command {
 			name: "insult",
 			group: "misc",
 			memberName: "insult",
-			description: "Generate an evil insult!",
+			description: "Responds with an evil insult!",
 			throttling: {
 				usages: 1,
 				duration: 6,

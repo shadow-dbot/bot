@@ -7,7 +7,8 @@ module.exports = class supportCommand extends Command {
 			aliases: ["helpme", "supportme", "support"],
 			group: "misc",
 			memberName: "support",
-			description: "Support link",
+			description:
+				"Discord support server invite link, Incase the bots causing you troubles ;c",
 			throttling: {
 				usages: 1,
 				duration: 60,

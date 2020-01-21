@@ -7,7 +7,7 @@ module.exports = class loopCommand extends Command {
 			group: "music",
 			memberName: "loop",
 			guildOnly: true,
-			description: "Loop the current playing song",
+			description: "Repeats the current song",
 		});
 	}
 

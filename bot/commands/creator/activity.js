@@ -9,7 +9,7 @@ module.exports = class suggestions extends Command {
 			name: "activity",
 			group: "creator",
 			memberName: "activity",
-			description: "Set's bot activity, Bot creator only",
+			description: "Set's bot activity, Creator - Only",
 			args: [
 				{
 					key: "query",

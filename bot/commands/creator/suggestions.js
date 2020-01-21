@@ -9,7 +9,7 @@ module.exports = class suggestions extends Command {
 			name: "suggestions",
 			group: "creator",
 			memberName: "suggestions",
-			description: "List all suggestions ",
+			description: "List all suggestions, Creator - Only ",
 		});
 	}
 

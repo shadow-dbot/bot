@@ -11,7 +11,7 @@ module.exports = class streamCommand extends Command {
 			aliases: ["stream"],
 			memberName: "streaming",
 			group: "music",
-			description: "Joins lobby and starts playing lofi",
+			description: "Joins the channel and starts playing 24/7 Low Fi",
 			guildOnly: true,
 			clientPermissions: ["SPEAK", "CONNECT"],
 			throttling: {

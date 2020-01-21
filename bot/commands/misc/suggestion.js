@@ -9,7 +9,7 @@ module.exports = class suggestion extends Command {
 			group: "misc",
 			aliases: ["suggest", "idea"],
 			memberName: "suggest",
-			description: "Have a suggestion? ",
+			description: "Have a suggestion for the website or for a command? Let us know!",
 			examples: ["suggest add more music commands"],
 			throttling: {
 				usages: 1,

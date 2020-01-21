@@ -7,7 +7,7 @@ module.exports = class resumeCommand extends Command {
 			aliases: ["resume-song", "continue"],
 			memberName: "resume",
 			group: "music",
-			description: "Resume the current paused song",
+			description: "Continues playing current song",
 			guildOnly: true,
 		});
 	}

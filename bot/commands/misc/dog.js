@@ -10,7 +10,7 @@ module.exports = class dogCommand extends Command {
 			aliases: ["dog-pic", "dogs"],
 			group: "misc",
 			memberName: "dog",
-			description: "Replies with a cute dog picture",
+			description: "Responds with a random Dog image",
 			throttling: {
 				usages: 2,
 				duration: 10,

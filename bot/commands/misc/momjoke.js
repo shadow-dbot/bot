@@ -8,7 +8,7 @@ module.exports = class momJokeCommand extends Command {
 			aliases: ["mom"],
 			group: "misc",
 			memberName: "momjokes",
-			description: "Replies with a mom joke",
+			description: "Responds with a random Mom Joke!",
 			throttling: {
 				usages: 2,
 				duration: 10,

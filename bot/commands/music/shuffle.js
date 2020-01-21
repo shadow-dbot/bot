@@ -6,7 +6,7 @@ module.exports = class shuffleQueueCommand extends Command {
 			name: "shuffle",
 			memberName: "shuffle",
 			group: "music",
-			description: "Shuffle the song queue",
+			description: "Shuffles the queue",
 			guildOnly: true,
 		});
 	}
