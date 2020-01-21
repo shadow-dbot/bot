@@ -21,16 +21,21 @@ module.exports = {
 		console.log("An error occured, Saved. ");
 	},
 	stats: async (client, cmd, guild) => {
-		const _guild = await db.Guilds.findOne({ guildID: guild.id }).catch(e => {
-			console.log(e);
-		});
-
+		if (guild) {
+			const _guild = await db.Guilds.findOne({ guildID: guild.id }).catch(e => {
+				console.log(e);
+			});
+			const newCommand = new db.Command({
+				type: cmd.name,
+				group_type: cmd.groupID,
+				guild: _guild,
+			});
+			return await newCommand.save();
+		}
 		const newCommand = new db.Command({
 			type: cmd.name,
 			group_type: cmd.groupID,
-			guild: _guild,
 		});
-
 		await newCommand.save();
 	},
 };
