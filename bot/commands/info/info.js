@@ -31,7 +31,7 @@ module.exports = class info extends Command {
 				// .setTitle("Server information")
 				.setColor("ff0000")
 				.setTitle("Information about me ")
-				.setTimestamp()
+				.setURL("https://shadow.demiann.xyz")
 				.addField("I'm currently in ", `${this.client.guilds.size} servers`, false)
 				.addField(`With a total of `, `${this.client.users.size} users`, false)
 				// .addField(with a total of , this.client.guilds.size)
@@ -40,7 +40,8 @@ module.exports = class info extends Command {
 					`I've been running for **${hours}** hours, **${minutes}** minutes!`,
 					false
 				)
-				.setDescription(`Created by [Demian](https://demiann.xyz)`);
+				.setDescription(`Created by [Demian](https://demiann.xyz)`)
+				.setTimestamp();
 
 			msg.channel.send(embed);
 		} catch (e) {
