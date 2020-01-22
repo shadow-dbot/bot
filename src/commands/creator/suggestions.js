@@ -1,23 +1,15 @@
 const { Command } = require("discord.js-commando");
 const { MessageEmbed } = require("discord.js");
 
-const DB = require("../../../database");
+const DB = require("./../../database");
 
 module.exports = class suggestions extends Command {
 	constructor(client) {
 		super(client, {
-			name: "activity",
+			name: "suggestions",
 			group: "creator",
-			memberName: "activity",
-			description: "Set's bot activity, Creator - Only",
-			args: [
-				{
-					key: "query",
-					prompt: "Please provide the activity",
-					type: "string",
-					validate: query => query.length > 3,
-				},
-			],
+			memberName: "suggestions",
+			description: "List all suggestions, Creator - Only ",
 		});
 	}
 
@@ -25,10 +17,11 @@ module.exports = class suggestions extends Command {
 		return this.client.isOwner(msg.author);
 	}
 
-	async run(msg, { query }) {
+	async run(msg) {
 		try {
-			this.client.user.setActivity(query);
-			msg.reply("Updated!");
+			const suggestions = await DB.Suggestion.find({}).countDocuments();
+
+			msg.reply(`Theres ${suggestions} suggestions`);
 		} catch (e) {
 			console.log(e);
 			msg.reply("An error has occured, please try again later.");

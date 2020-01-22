@@ -1,7 +1,12 @@
+const Handlers = require("./handlers");
+
+require("dotenv").config();
+
+require("./database");
+
 const { Structures } = require("discord.js");
 
 const Commando = require("discord.js-commando");
-const Handlers = require("./handlers/");
 
 Structures.extend("Guild", Guild => {
 	class MusicGuild extends Guild {

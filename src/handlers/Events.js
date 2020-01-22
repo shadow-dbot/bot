@@ -1,4 +1,4 @@
-const event = require("../events/");
+const event = require("../events");
 
 const events = client => {
 	client.on("ready", () => {

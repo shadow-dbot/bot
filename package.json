@@ -2,12 +2,10 @@
 	"name": "shadow-bot",
 	"version": "1.0.2",
 	"description": "",
-	"main": "core/index.js",
+	"main": "src/",
 	"scripts": {
-		"start": "node core/",
-		"start:bot": "node bot/",
-		"dev": "npx nodemon core/",
-		"dev:bot": "npx nodemon bot/"
+		"start": "node src/",
+		"dev": "npx nodemon src/"
 	},
 	"repository": {
 		"type": "git",
@@ -21,19 +19,14 @@
 	},
 	"homepage": "https://github.com/QGIsK/Shadow-bot#readme",
 	"dependencies": {
-		"cors": "^2.8.5",
 		"dblapi.js": "^2.3.0",
 		"discord.js": "github:discordjs/discord.js",
 		"discord.js-commando": "github:discordjs/Commando",
 		"dotenv": "^8.2.0",
 		"ffmpeg-static": "^3.0.0",
-		"helmet": "^3.21.2",
-		"jsonwebtoken": "^8.5.1",
 		"moment": "2.24.0",
 		"mongoose": "5.8.7",
 		"mongoose-timestamps": "^0.0.1",
-		"morgan": "^1.9.1",
-		"node-cmd": "3.0.0",
 		"node-opus": "0.3.3",
 		"simple-youtube-api": "^5.2.1",
 		"ytdl-core": "^1.0.6"

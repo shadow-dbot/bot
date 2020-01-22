@@ -18,7 +18,9 @@ module.exports = class clearCommand extends Command {
 
 		if (
 			typeof message.guild.musicData.songDispatcher == "undefined" ||
-			message.guild.musicData.songDispatcher == null
+			message.guild.musicData.songDispatcher == null ||
+			!message.guild.musicData.isPlaying ||
+			message.guild.musicData.nowPlaying == null
 		) {
 			return message.reply("There is no song playing right now!");
 		}

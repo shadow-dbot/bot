@@ -11,14 +11,14 @@ module.exports = class volumeCommand extends Command {
 			description: "Change the music volume",
 			throttling: {
 				usages: 1,
-				duration: 5,
+				duration: 1,
 			},
 			args: [
 				{
 					key: "wantedVolume",
-					prompt: "What volume would you like to set? from 1 to 100",
-					type: "integer",
-					validate: wantedVolume => wantedVolume >= 1 && wantedVolume <= 100,
+					prompt: "What volume would you like to set? from 0 to 2.0",
+					type: "float",
+					validate: wantedVolume => wantedVolume >= 0 && wantedVolume <= 2,
 				},
 			],
 		});
@@ -30,7 +30,9 @@ module.exports = class volumeCommand extends Command {
 
 		if (
 			typeof message.guild.musicData.songDispatcher == "undefined" ||
-			message.guild.musicData.songDispatcher == null
+			message.guild.musicData.songDispatcher == null ||
+			!message.guild.musicData.isPlaying ||
+			message.guild.musicData.nowPlaying == null
 		) {
 			return message.reply("There is no song playing right now!");
 		}

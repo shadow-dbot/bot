@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 
 const moment = require("moment");
 
-const DB = require("../../../database");
+const DB = require("./../../database");
 
 module.exports = class serverStats extends Command {
 	constructor(client) {

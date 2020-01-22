@@ -1,6 +1,6 @@
 const { Command } = require("discord.js-commando");
 
-const DB = require("../../../database");
+const DB = require("./../../database");
 
 module.exports = class suggestion extends Command {
 	constructor(client) {
