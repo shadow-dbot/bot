@@ -1,8 +1,8 @@
-const Handlers = require("./handlers");
-
 require("dotenv").config();
 
 require("./database");
+
+const Handlers = require("./handlers");
 
 const { Structures } = require("discord.js");
 
