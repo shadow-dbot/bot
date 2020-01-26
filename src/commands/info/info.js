@@ -26,7 +26,7 @@ module.exports = class info extends Command {
 			let embed = new MessageEmbed()
 				// .setTitle("Server information")
 				.setColor("ff0000")
-				.setTitle("Information about me ")
+				.setTitle("My Website")
 				.setURL("https://shadow.demiann.xyz")
 				.addField("I'm currently in ", `${this.client.guilds.size} servers`, false)
 				.addField(`With a total of `, `${this.client.users.size} users`, false)
