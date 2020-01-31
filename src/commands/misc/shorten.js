@@ -30,7 +30,10 @@ module.exports = class shortenCommand extends Command {
 	}
 
 	async run(msg, { longUrl }) {
-		const baseUrl = process.env.BASE_URL;
+		const baseUrl =
+			!process.env.NODE_ENV || process.env.NODE_ENV === "development"
+				? "http://localhost:3002"
+				: "https://to.demiann.xyz";
 
 		if (!validUrl.isUri(baseUrl)) {
 			return msg.reply("Invalid base url");
