@@ -35,7 +35,6 @@ module.exports = class shortenCommand extends Command {
 		if (!validUrl.isUri(baseUrl)) {
 			return msg.reply("Invalid base url");
 		}
-		git;
 		const urlCode = shortid.generate();
 
 		if (validUrl.isUri(longUrl)) {
