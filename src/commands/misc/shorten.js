@@ -21,7 +21,7 @@ module.exports = class shortenCommand extends Command {
 			args: [
 				{
 					key: "longUrl",
-					prompt: "Please provide the suggestion",
+					prompt: "Please provide the url you want shorter",
 					type: "string",
 					validate: longUrl => longUrl.length > 5,
 				},
