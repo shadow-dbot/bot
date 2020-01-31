@@ -15,4 +15,5 @@ module.exports = {
 	Guilds: require("./models/server"),
 	Settings: require("./models/settings"),
 	Suggestion: require("./models/suggestion"),
+	Url: require("./models/url"),
 };
