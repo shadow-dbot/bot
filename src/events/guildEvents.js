@@ -9,17 +9,23 @@ module.exports = {
 	create: async (client, guild) => {
 		await checkDB.guild(client, guild);
 
-		console.log(
-			`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`
-		);
+		const msg = `New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`;
 
+		console.log(msg);
+
+		client.users.get(process.env.BOT_OWNER, false).send(msg);
 		client.user.setActivity(
 			`${client.commandPrefix}help || Serving ${client.guilds.size} servers and ${client.users.size} users`
 		);
 	},
 
 	delete: async (client, guild) => {
-		console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
+		const msg = `I have been removed from: ${guild.name} (id: ${guild.id})`;
+
+		console.log(msg);
+
+		client.users.get(process.env.BOT_OWNER, false).send(msg);
+
 		client.user.setActivity(
 			`${client.commandPrefix}help || Serving ${client.guilds.size} servers and ${client.users.size} users`
 		);
