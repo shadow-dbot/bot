@@ -1,13 +1,13 @@
 const { Command } = require("discord.js-commando");
 
-module.exports = class loopCommand extends Command {
+module.exports = class againCommand extends Command {
 	constructor(client) {
 		super(client, {
-			name: "loop",
+			name: "again",
 			group: "music",
-			memberName: "loop",
+			memberName: "again",
 			guildOnly: true,
-			description: "Repeats the current song",
+			description: "Plays the current song again",
 		});
 	}
 
@@ -16,7 +16,7 @@ module.exports = class loopCommand extends Command {
 			return message.say("There is no song playing right now!");
 		}
 
-		message.channel.send(`${message.guild.musicData.nowPlaying.title} added to queue`);
+		message.channel.send(`${message.guild.musicData.nowPlaying.title} added to the queue`);
 		message.guild.musicData.queue.unshift(message.guild.musicData.nowPlaying);
 		return;
 	}
