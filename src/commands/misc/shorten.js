@@ -30,7 +30,7 @@ module.exports = class shortenCommand extends Command {
 	}
 
 	async run(msg, { longUrl }) {
-		const baseUrl = "https://to.demiann.xyz";
+		const baseUrl = "https://demiann.xyz";
 
 		if (!validUrl.isUri(baseUrl)) {
 			return msg.reply("Invalid base url");
