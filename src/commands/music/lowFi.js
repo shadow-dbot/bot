@@ -4,14 +4,14 @@ const Youtube = require("simple-youtube-api");
 const ytdl = require("ytdl-core");
 const youtube = new Youtube(process.env.YOUTUBE_API);
 
-module.exports = class streamCommand extends Command {
+module.exports = class lowFiCommand extends Command {
 	constructor(client) {
 		super(client, {
-			name: "streaming",
-			aliases: ["stream"],
-			memberName: "streaming",
+			name: "lowfi",
+			aliases: ["low", "fi", "chill", "study", "1am"],
+			memberName: "lowfi",
 			group: "music",
-			description: "Joins the channel and starts playing 24/7 Low Fi",
+			description: "Plays a LowFi Stream",
 			guildOnly: true,
 			clientPermissions: ["SPEAK", "CONNECT"],
 			throttling: {
@@ -26,7 +26,7 @@ module.exports = class streamCommand extends Command {
 		let voiceChannel = message.member.voice.channel;
 		if (!voiceChannel) return message.say("Join a channel and try again");
 
-		let query = "https://www.youtube.com/watch?v=hHW1oY26kxQ";
+		let query = "https://www.youtube.com/watch?v=5qap5aO4i9A";
 		try {
 			query = query.replace(/(>|<)/gi, "").split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
 			const id = query[2].split(/[^0-9a-z_\-]/i)[0];
