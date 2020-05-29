@@ -20,6 +20,7 @@ Structures.extend("Guild", Guild => {
 			};
 		}
 	}
+
 	return MusicGuild;
 });
 
