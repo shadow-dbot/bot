@@ -17,7 +17,7 @@ module.exports = class jokeCommand extends Command {
 	}
 
 	run(msg) {
-		fetch(`https://sv443.net/jokeapi/category/any`)
+		fetch(`https://sv443.net/jokeapi/v2/joke/Any`)
 			.then(res => res.json())
 			.then(json => {
 				json.type === "single"
