@@ -2,14 +2,7 @@
 
 ### Prefix
 
--   Default: \*
-
-### Coming soon:
-
--   Moderation
--   AntiSpam
--   AntiRaid
--   Logging
+-   Default: \$
 
 ### Currently has
 
@@ -56,7 +49,7 @@
 -   skip
 -   skipto
 -   streaming (Plays lo fi 24/7 stream from youtube)
--   volume (1-100%)
+-   volume (0.0 - 2.0)
 
 ## Api's
 
